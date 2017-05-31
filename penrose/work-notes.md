@@ -1,8 +1,26 @@
 # Penrose Work Notes
 
-## 1. Work log
 
-## 2. Starter Project
+## 1. TODOs
+
+- [ ] Adjust the BBox for Labels properly
+- [ ] Read Katherine's doc on obj fns and come up with questions
+- [ ] Add color support
+
+## 2. Work log
+
+- [05/21/17]
+    - [x] Came up with a quick fix to the label centering issue
+
+## 3. Starter Project
+
+- Color Support
+    - Enable solid circles: not naturally supported in gloss
+        - All sets are now `ThickCircle`s with `radius = r/2` and `thickness = r`, which luckily gives us what we wanted
+    - Randomize color upon start up:
+        - `sampleConstrainedState` is the most relevant function
+        - TODO: BTW, is `crop` causing the program to hang when we only have one set?
+
 
 - Centering the texts:
     - The font is some kind of vector font. According to StackOverFlow, gloss just uses whatever GLUT provides, which is possibly Helvetica Light?
