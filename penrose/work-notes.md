@@ -23,7 +23,8 @@
     - Randomize color upon start up:
         - `sampleCoord` is the most relevant function, where parameters for labels and circles are generated
         - TODO: BTW, is `crop` causing the program to hang when we only have one set?
-        - After my change in `sampleCoord`. I had to change the `Circ'` definition, and a couple places where objects of `Circ` or `Circ'` types get instantiated. 
+        - After my change in `sampleCoord`. I had to change the `Circ'` definition, and a couple places where objects of `Circ` or `Circ'` types get instantiated.
+        - As if now, the colors are completely randomized in `[0.0, 1.0]`. Most of the times they look pretty good. 
 
 - Centering the texts:
     - The font is some kind of vector font. According to StackOverFlow, gloss just uses whatever GLUT provides, which is possibly Helvetica Light?
