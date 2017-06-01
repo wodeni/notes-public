@@ -5,22 +5,25 @@
 
 - [ ] Adjust the BBox for Labels properly
 - [ ] Read Katherine's doc on obj fns and come up with questions
-- [ ] Add color support
 
 ## 2. Work log
 
-- [05/21/17]
+- [05/31/17]
     - [x] Came up with a quick fix to the label centering issue
+    - [x] Solid color for circles
+- [06/01/17]
+    - [x] Randomize color on start-up
 
 ## 3. Starter Project
 
 - Color Support
     - Enable solid circles: not naturally supported in gloss
         - All sets are now `ThickCircle`s with `radius = r/2` and `thickness = r`, which luckily gives us what we wanted
+        - To deal with intersections, we could just set the alpha level to `0.5` all the time and have gloss deal with it. Otherwise, I don't know how we could render the intersected region differently.
     - Randomize color upon start up:
-        - `sampleConstrainedState` is the most relevant function
+        - `sampleCoord` is the most relevant function, where parameters for labels and circles are generated
         - TODO: BTW, is `crop` causing the program to hang when we only have one set?
-
+        - After my change in `sampleCoord`. I had to change the `Circ'` definition, and a couple places where objects of `Circ` or `Circ'` types get instantiated. 
 
 - Centering the texts:
     - The font is some kind of vector font. According to StackOverFlow, gloss just uses whatever GLUT provides, which is possibly Helvetica Light?
