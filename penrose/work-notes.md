@@ -5,7 +5,9 @@
 
 - [ ] Adjust the BBox for Labels properly
 - [ ] Read Katherine's doc on obj fns and come up with questions
-- [ ] Layout a plan for adding Point
+- [ ] Make a plan for adding Point
+- [ ] Test on rendering points in the system
+- [ ] Complete Compiler support for `Point`
 
 ## 2. Work log
 
@@ -19,6 +21,18 @@
 
 ### Adding Points
 
+- Compiler:
+    - adding `PointIn` and `PointNotIn` to the Substance language
+    - (likely) adding `Shape` definition in the Style language
+- Runtime:
+    - defining a `Point` data type
+    - Change `Obj` typeclass to include it
+- Optimization:
+    - See if we can use the existing functions on `Point`s
+- Rendering:
+    - Should it be just a small sphere? Does gloss even render points?
+    - How should label behave with points?? Definitely NOT centered, but as close as possible I guess.
+
 ### Color Support
 - Enable solid circles: not naturally supported in gloss
     - All sets are now `ThickCircle`s with `radius = r/2` and `thickness = r`, which luckily gives us what we wanted
@@ -28,6 +42,7 @@
     - TODO: BTW, is `crop` causing the program to hang when we only have one set?
     - After my change in `sampleCoord`. I had to change the `Circ'` definition, and a couple places where objects of `Circ` or `Circ'` types get instantiated.
     - As if now, the colors are completely randomized in `[0.0, 1.0]`. Most of the times they look pretty good.
+    - The `Color` type we used is defined in Gloss, not by us.
 
 ![color1](assets/work-notes-90e10.png)
 ![color2](assets/work-notes-03694.png)
