@@ -29,7 +29,7 @@
 ![color1](assets/work-notes-90e10.png)
 ![color2](assets/work-notes-03694.png)
 
-=======================
+---------------------
 
 ### Centering the texts
 - The font is some kind of vector font. According to StackOverFlow, gloss just uses whatever GLUT provides, which is possibly Helvetica Light?
