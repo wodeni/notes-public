@@ -5,6 +5,7 @@
 
 - [ ] Adjust the BBox for Labels properly
 - [ ] Read Katherine's doc on obj fns and come up with questions
+- [ ] Layout a plan for adding Point
 
 ## 2. Work log
 
@@ -15,6 +16,8 @@
     - [x] Randomize color on start-up
 
 ## 3. Starter Project
+
+### Adding Points
 
 ### Color Support
 - Enable solid circles: not naturally supported in gloss
