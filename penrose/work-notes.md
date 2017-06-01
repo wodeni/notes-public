@@ -29,7 +29,9 @@
 ![color1](assets/work-notes-90e10.png)
 ![color2](assets/work-notes-03694.png)
 
-### Centering the texts:
+=======================
+
+### Centering the texts
 - The font is some kind of vector font. According to StackOverFlow, gloss just uses whatever GLUT provides, which is possibly Helvetica Light?
     - According to one of the discussions, it is `GLUT.renderString GLUT.Roman str`, which is unfortunately not monospaced
     - "`Roman`: A proportionally spaced Roman Simplex font for ASCII characters 32 through 127. The maximum top character in the font is 119.05 units; the bottom descends 33.33 units."
