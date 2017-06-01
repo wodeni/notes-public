@@ -30,7 +30,7 @@
 - Optimization:
     - See if we can use the existing functions on `Point`s
 - Rendering:
-    - Should it be just a small sphere? Does gloss even render points?
+    - Should it be just a small circle? Does `gloss` even render points?
     - How should label behave with points?? Definitely NOT centered, but as close as possible I guess.
 
 ### Color Support
