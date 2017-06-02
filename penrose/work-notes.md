@@ -44,8 +44,7 @@
         ```
         Set A
         Set B
-        Point C
-        NoIntersect A B
+        Point C NoIntersect A B
         In C A
         In C B
         ```
@@ -57,6 +56,8 @@
     - Added `inObj` for points and attempted to fix the BBox problem for labels. It now works, but when clicking from one character away, the label will still respond (consider actually rendering the bboxes?)
     - If a point is in a set, the objective function arbitrarily force the point to be `radius / 2` from the center of the circle. In the future, we could put this distance as an optimization parameter
 
+- Preview:
+    - ![pt](assets/170602-point.gif)
 --------------------
 
 ### Color Support
