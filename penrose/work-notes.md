@@ -3,9 +3,9 @@
 
 ## 1. TODOs
 
-- [ ] Adjust the BBox for Labels properly
-- [ ] Read Katherine's doc on obj fns and come up with questions
 - [ ] Label BBox seems to be a little off, but it is now functional
+- [ ] A global(ambient) function that make sure labels are not touching anything it shouldn't, labels for set not on the border and etc
+    - This might be a complicated problem, we don't know if there is a feasible configuration or not.
 
 ## 2. Work log
 
@@ -22,7 +22,8 @@
     - [x] Fixed parts commented in PR
     - [x] Added the first objective function `pointInExt`
     - [x] Design energy function for `PointIn` and `PointNotIn`
-
+    - [x] Read Katherine's doc on obj fns and come up with questions
+        - Read 2.5 times and no problem found, might need details on packing later
 ## 3. Starter Project
 
 ### Adding Points
@@ -53,11 +54,13 @@
     - A solid circle with `radius = 4`
     - How should label behave with points?? Definitely NOT centered, but as close as possible I guess.
         - A new energy function is needed for points' labels
+        - Now just hardcoded labels to be `(10, 20)` away from the center
     - Added `inObj` for points and attempted to fix the BBox problem for labels. It now works, but when clicking from one character away, the label will still respond (consider actually rendering the bboxes?)
     - If a point is in a set, the objective function arbitrarily force the point to be `radius / 2` from the center of the circle. In the future, we could put this distance as an optimization parameter
 
 - Preview:
     - ![pt](assets/170602-point.gif)
+    - ![color](assets/170602-color-scheme.gif)
 --------------------
 
 ### Color Support
