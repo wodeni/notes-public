@@ -7,6 +7,8 @@
 - [ ] A global(ambient) function that make sure labels are not touching anything it shouldn't, labels for set not on the border and etc
     - This might be a complicated problem, we don't know if there is a feasible configuration or not.
 - [ ] Read more about style language design, optimization strategy, and start implementing arrow based diagram!
+- [ ] Fix the problem with subsets having random sizes
+- [ ] A strategy for selecting a graphical primitive given shaped spec in Style
 
 ## Work log
 
@@ -30,11 +32,19 @@
 - [06/04/17]
     - Off
 - [06/05/17]
-    - Off
+    - [x] Implemented `HollowDot` and `Cros` shapes and rendering functions for `Pt`
 
 ---------------------------------------------------
 
 ## [Week 2] Continuous Map and miscellaneous fixes
+
+- Possible designs for storage of Style information
+    - First, due to my current Haskell ability, some of the proposals might not make sense/isn't optimal
+    - **Option 1**: storing the style information directly inside the objects.  
+        - For example, for a `Circ`, we add a couple fields such as `shape`, which is of type `SubShape`. I haven't verify this, but I think the pack/unpack process will not throw out fields inside objs?
+    - **Option 2**: have a dictionary that does a similar job, which stores a mapping from `Obj`(or some string representation of it, since all `Obj`s are currently named) to some custom type that we can define. For instance, define `StyleInfo` to be a (algebraic?) type. Then I guess we have to ask if location and dimension a part of this type or not?
+    - I don't know if this needs to be more complex if we have Style attributes that depends on multiple objects. Line break is a potential one. Then we might need to take that into account, too.
+    - Of course, we will need a function that walks through the style AST and properly set up whatever data structure that we will be using.
 
 ----------------------------
 ## [Week 1] Starter Project
@@ -110,6 +120,18 @@
 ![ctr1](assets/work-notes-d73d7.png)
 ![ctr2](assets/work-notes-21a42.png)
 ![ctr3](assets/work-notes-4ab73.png)
+
+-------------------------
+# Side project: generating random Penrose program
+
+- Katherine's Slack post
+    * Some thoughts on procedurally generating set theory programs:
+    * randomly sample a number of declarations for each kind of object (e.g. point, set, map)
+    * assign each declaration a unique one-character name
+    * for each subset of declared objects, if there exists a constraint that applies to objects of those types, for each applicable constraint, apply it with some probability.
+    (e.g. a subset might be "Point p" and "Set A" and two constraints that might apply to those objects are "p in A" and "p NotIn A")
+    * However, this process may produce programs with contradictory constraints, e.g. "p in A" and "p NotInA," or more complex ones like "p in A, A NotSubset B, p in B." We don't currently check for contradictory constraints; our optimizer just produces a diagram that sort-of satisfies the constraints.
+    * (from my email to Daniel and Kevin, the NN diagram people)
 
 -------------------------
 # Random quotes and notes
