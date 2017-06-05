@@ -42,6 +42,7 @@
     - First, due to my current Haskell ability, some of the proposals might not make sense/isn't optimal
     - **Option 1**: storing the style information directly inside the objects.  
         - For example, for a `Circ`, we add a couple fields such as `shape`, which is of type `SubShape`. I haven't verify this, but I think the pack/unpack process will not throw out fields inside objs?
+        - Or we can have objects hold their own render functions?
     - **Option 2**: have a dictionary that does a similar job, which stores a mapping from `Obj`(or some string representation of it, since all `Obj`s are currently named) to some custom type that we can define. For instance, define `StyleInfo` to be a (algebraic?) type. Then I guess we have to ask if location and dimension a part of this type or not?
     - I don't know if this needs to be more complex if we have Style attributes that depends on multiple objects. Line break is a potential one. Then we might need to take that into account, too.
     - Of course, we will need a function that walks through the style AST and properly set up whatever data structure that we will be using.
