@@ -1,13 +1,14 @@
 # Penrose Work Notes
 
 
-## 1. TODOs
+## TODOs
 
 - [ ] Label BBox seems to be a little off, but it is now functional
 - [ ] A global(ambient) function that make sure labels are not touching anything it shouldn't, labels for set not on the border and etc
     - This might be a complicated problem, we don't know if there is a feasible configuration or not.
+- [ ] Read more about style language design, optimization strategy, and start implementing arrow based diagram!
 
-## 2. Work log
+## Work log
 
 - [05/31/17]
     - [x] Came up with a quick fix to the label centering issue
@@ -24,7 +25,19 @@
     - [x] Design energy function for `PointIn` and `PointNotIn`
     - [x] Read Katherine's doc on obj fns and come up with questions
         - Read 2.5 times and no problem found, might need details on packing later
-## 3. Starter Project
+- [06/03/17]
+    - Meeting with Katherine and laid out the plan for the upcoming week
+- [06/04/17]
+    - Off
+- [06/05/17]
+    - Off
+
+---------------------------------------------------
+
+## [Week 2] Continuous Map and miscellaneous fixes
+
+----------------------------
+## [Week 1] Starter Project
 
 ### Adding Points
 
@@ -98,7 +111,8 @@
 ![ctr2](assets/work-notes-21a42.png)
 ![ctr3](assets/work-notes-4ab73.png)
 
-# 4. Random quotes and notes
+-------------------------
+# Random quotes and notes
 
 - "btw the way selection currently works is: if multiple objects overlap, it selects the first one that the cursor is inside in the list of objects."
 
