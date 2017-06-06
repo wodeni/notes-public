@@ -3,6 +3,7 @@
 
 ## TODOs
 
+- [ ] Random program generator
 - [ ] Implement Square class
 - [ ] Implement Arrow class
 - [ ] A strategy for selecting a graphical primitive given shaped spec in Style
@@ -43,6 +44,10 @@
     - Problem: The initial implementation did not impose any constraint on the sizes of circles when the system samples the initial state. Therefore, we end up with contradictory scenarios where `Set A` is a subset of `Set B` but has a larger radius than `B`
     - Solution: I added `[C.SubConstr]` to `State` so that whenever we resample the initial state, we use the constraints, specifically `C.Subset`, to force radius constraints on circles.
     - TODO: the implementation is not at all elegant. I had to create another dictionary to store `[Obj]`, instead of the original `[Obj']`, and I do not know storing `C.SubConstr` inside of `State` make snese or not.
+    - Preview:
+        - ![](assets/work-notes-9365b.png)
+        - ![](assets/work-notes-1325b.png)
+        - ![](assets/work-notes-e3bf2.png)
 - Possible designs for storage of Style information
     - First, due to my current Haskell ability, some of the proposals might not make sense/isn't optimal
     - **Option 1**: storing the style information directly inside the objects.  
