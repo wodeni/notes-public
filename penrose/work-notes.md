@@ -3,12 +3,10 @@
 
 ## TODOs
 
-- [ ] Label BBox seems to be a little off, but it is now functional
-- [ ] A global(ambient) function that make sure labels are not touching anything it shouldn't, labels for set not on the border and etc
-    - This might be a complicated problem, we don't know if there is a feasible configuration or not.
-- [ ] Read more about style language design, optimization strategy, and start implementing arrow based diagram!
-- [ ] Fix the problem with subsets having random sizes
+- [ ] Implement Square class
+- [ ] Implement Arrow class
 - [ ] A strategy for selecting a graphical primitive given shaped spec in Style
+- [ ] Label BBox seems to be a little off, but it is now functional
 
 ## Work log
 
@@ -33,11 +31,18 @@
     - Off
 - [06/05/17]
     - [x] Implemented `HollowDot` and `Cros` shapes and rendering functions for `Pt`
+    - [x] Initial plan for the subset bug fix and implementation for different `Style` primitives
+- [06/06/17]
+    - [x] Fix the problem with subsets having random sizes
 
 ---------------------------------------------------
 
 ## [Week 2] Continuous Map and miscellaneous fixes
 
+- Fix to the size problem with `Subset` constraints
+    - Problem: The initial implementation did not impose any constraint on the sizes of circles when the system samples the initial state. Therefore, we end up with contradictory scenarios where `Set A` is a subset of `Set B` but has a larger radius than `B`
+    - Solution: I added `[C.SubConstr]` to `State` so that whenever we resample the initial state, we use the constraints, specifically `C.Subset`, to force radius constraints on circles.
+    - TODO: the implementation is not at all elegant. I had to create another dictionary to store `[Obj]`, instead of the original `[Obj']`, and I do not know storing `C.SubConstr` inside of `State` make snese or not.
 - Possible designs for storage of Style information
     - First, due to my current Haskell ability, some of the proposals might not make sense/isn't optimal
     - **Option 1**: storing the style information directly inside the objects.  
