@@ -35,6 +35,7 @@
     - [x] Initial plan for the subset bug fix and implementation for different `Style` primitives
 - [06/06/17]
     - [x] Fix the problem with subsets having random sizes
+    - [x] Random generation for set/point decls
 
 ---------------------------------------------------
 
@@ -143,6 +144,7 @@
     (e.g. a subset might be "Point p" and "Set A" and two constraints that might apply to those objects are "p in A" and "p NotIn A")
     * However, this process may produce programs with contradictory constraints, e.g. "p in A" and "p NotInA," or more complex ones like "p in A, A NotSubset B, p in B." We don't currently check for contradictory constraints; our optimizer just produces a diagram that sort-of satisfies the constraints.
     * (from my email to Daniel and Kevin, the NN diagram people)
+- Tweakable parameters, e.g. number of decls, constraints, probability of constraint, probability it constrains already-used sets, etc
 
 -------------------------
 # Random quotes and notes
