@@ -1,5 +1,8 @@
 # Penrose Work Notes
 
+# Table of Contents
+- [A List of Possible Abstractions](#what-abstractions-do-we-want)
+- [Work Log](#work-log)
 
 ## TODOs
 
@@ -9,33 +12,6 @@
 - [ ] A strategy for selecting a graphical primitive given shaped spec in Style
 - [ ] Label BBox seems to be a little off, but it is now functional
 
-## Work log
-
-- [05/31/17]
-    - [x] Came up with a quick fix to the label centering issue
-    - [x] Solid color for circles
-- [06/01/17]
-    - [x] Randomize color on start-up
-    - [x] Complete Compiler support for `Point`
-    - [x] Make a plan for adding Point
-    - [x] Test on rendering points in the system
-    - [x] Complete the boiler plate section of the code (pack, unpack etc)
-- [06/02/17]
-    - [x] Fixed parts commented in PR
-    - [x] Added the first objective function `pointInExt`
-    - [x] Design energy function for `PointIn` and `PointNotIn`
-    - [x] Read Katherine's doc on obj fns and come up with questions
-        - Read 2.5 times and no problem found, might need details on packing later
-- [06/03/17]
-    - Meeting with Katherine and laid out the plan for the upcoming week
-- [06/04/17]
-    - Off
-- [06/05/17]
-    - [x] Implemented `HollowDot` and `Cros` shapes and rendering functions for `Pt`
-    - [x] Initial plan for the subset bug fix and implementation for different `Style` primitives
-- [06/06/17]
-    - [x] Fix the problem with subsets having random sizes
-    - [x] Random generation for set/point decls
 
 ---------------------------------------------------
 
@@ -159,3 +135,41 @@
     3. noneOverlap calls noOverlapPair, which... returns true if any pair of objects is not two circles. but since there is only one set, the entire state of the world is just one circle and one label, so it always returns true. therefore the `not . noneOverlap` will always evaluate to false, so it will fail to ever find an initial state.
 
     best solution is to turn off `constraintFlag` and make minor fixes to `noneOverlap` and `noOverlapPair`
+
+---------------
+## Work log
+
+- [05/31/17]
+    - [x] Came up with a quick fix to the label centering issue
+    - [x] Solid color for circles
+- [06/01/17]
+    - [x] Randomize color on start-up
+    - [x] Complete Compiler support for `Point`
+    - [x] Make a plan for adding Point
+    - [x] Test on rendering points in the system
+    - [x] Complete the boiler plate section of the code (pack, unpack etc)
+- [06/02/17]
+    - [x] Fixed parts commented in PR
+    - [x] Added the first objective function `pointInExt`
+    - [x] Design energy function for `PointIn` and `PointNotIn`
+    - [x] Read Katherine's doc on obj fns and come up with questions
+        - Read 2.5 times and no problem found, might need details on packing later
+- [06/03/17]
+    - Meeting with Katherine and laid out the plan for the upcoming week
+- [06/04/17]
+    - Off
+- [06/05/17]
+    - [x] Implemented `HollowDot` and `Cros` shapes and rendering functions for `Pt`
+    - [x] Initial plan for the subset bug fix and implementation for different `Style` primitives
+- [06/06/17]
+    - [x] Fix the problem with subsets having random sizes
+    - [x] Random generation for set/point decls
+- [06/07/17]
+    - [x] Random generation for set and point constraints
+
+---------------------------------
+## What abstractions do we want?
+
+- An unified interface for objective function
+    - Signed distance
+    - At the same time, we should allow advanced users to provide their own custom implementations
