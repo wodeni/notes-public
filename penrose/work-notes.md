@@ -35,13 +35,13 @@
         - Is this true??
 
 ### Fix to the size problem with `Subset` constraints
-    - Problem: The initial implementation did not impose any constraint on the sizes of circles when the system samples the initial state. Therefore, we end up with contradictory scenarios where `Set A` is a subset of `Set B` but has a larger radius than `B`
-    - Solution: I added `[C.SubConstr]` to `State` so that whenever we resample the initial state, we use the constraints, specifically `C.Subset`, to force radius constraints on circles.
-    - TODO: the implementation is not at all elegant. I had to create another dictionary to store `[Obj]`, instead of the original `[Obj']`, and I do not know storing `C.SubConstr` inside of `State` make snese or not.
-    - Preview:
-        - ![](assets/170606-subset-size.gif)
-        - ![](assets/170606-subset-size-2.gif)
-        - ![](assets/170606-subset-size-3.gif)
+- Problem: The initial implementation did not impose any constraint on the sizes of circles when the system samples the initial state. Therefore, we end up with contradictory scenarios where `Set A` is a subset of `Set B` but has a larger radius than `B`
+- Solution: I added `[C.SubConstr]` to `State` so that whenever we resample the initial state, we use the constraints, specifically `C.Subset`, to force radius constraints on circles.
+- TODO: the implementation is not at all elegant. I had to create another dictionary to store `[Obj]`, instead of the original `[Obj']`, and I do not know storing `C.SubConstr` inside of `State` make snese or not.
+- Preview:
+    - ![](assets/170606-subset-size.gif)
+    - ![](assets/170606-subset-size-2.gif)
+    - ![](assets/170606-subset-size-3.gif)
 
 ----------------------------
 ## [Week 1] Starter Project
