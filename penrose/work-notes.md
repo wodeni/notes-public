@@ -18,14 +18,7 @@
 
 ## [Week 2] Continuous Map and miscellaneous fixes
 
-- Fix to the size problem with `Subset` constraints
-    - Problem: The initial implementation did not impose any constraint on the sizes of circles when the system samples the initial state. Therefore, we end up with contradictory scenarios where `Set A` is a subset of `Set B` but has a larger radius than `B`
-    - Solution: I added `[C.SubConstr]` to `State` so that whenever we resample the initial state, we use the constraints, specifically `C.Subset`, to force radius constraints on circles.
-    - TODO: the implementation is not at all elegant. I had to create another dictionary to store `[Obj]`, instead of the original `[Obj']`, and I do not know storing `C.SubConstr` inside of `State` make snese or not.
-    - Preview:
-        - ![](assets/170606-subset-size.gif)
-        - ![](assets/170606-subset-size-2.gif)
-        - ![](assets/170606-subset-size-3.gif)
+### Parsing the `Style` specifications
 - Possible designs for storage of Style information
     - First, due to my current Haskell ability, some of the proposals might not make sense/isn't optimal
     - **Option 1**: storing the style information directly inside the objects.  
@@ -34,6 +27,21 @@
     - **Option 2**: have a dictionary that does a similar job, which stores a mapping from `Obj`(or some string representation of it, since all `Obj`s are currently named) to some custom type that we can define. For instance, define `StyleInfo` to be a (algebraic?) type. Then I guess we have to ask if location and dimension a part of this type or not?
     - I don't know if this needs to be more complex if we have Style attributes that depends on multiple objects. Line break is a potential one. Then we might need to take that into account, too.
     - Of course, we will need a function that walks through the style AST and properly set up whatever data structure that we will be using.
+- Katherine's suggestion:
+    - Let's just start by generalizing `Circle` to `Square`. What parts of the system need to change then? The square datatype, for example, needs to contain a center, side length, and angle. Should it contain the endpoint coordinates? How do we label squares? What objective function should be synthesize for the combination of `Set A` and `Shape A Square`? What if one set is a circle and one set is a square? How do we write objective functions on circle-sets, square-sets, and dot-points? It could get very complicated.
+    - So, maybe all our shapes should satisfy some kind of "optimization API"/typeclass. As Keenan suggested: maybe our optimization functions should in general only operate on objects that can return answers to "get thickness," "get distance," "get angle," etc. But we might need to know concretely where the borders of a square are in order to avoid putting labels on it. I don't know what the best solution is.
+    - Some parts of Style are relevant to the optimization and can be changed by it (e.g. anything numerical, like angle and color), and some aren't (e.g. anything categorical, like whether the shape is a square or a circle). I suggest storing the former as fields in the record (e.g. radius of circle) and the latter as a list of style lines `StyLine`, which is then passed to the render function at the end. The list of style lines for each object will have to take into account the overrides.
+    - I would not recommend having objects hold their own render functions. It's a good idea, but we can't easily inspect Haskell functions (meaning we can't compute on them, pattern-match on them...). I usually prefer storing things as data rather than as functions.
+        - Is this true??
+
+### Fix to the size problem with `Subset` constraints
+    - Problem: The initial implementation did not impose any constraint on the sizes of circles when the system samples the initial state. Therefore, we end up with contradictory scenarios where `Set A` is a subset of `Set B` but has a larger radius than `B`
+    - Solution: I added `[C.SubConstr]` to `State` so that whenever we resample the initial state, we use the constraints, specifically `C.Subset`, to force radius constraints on circles.
+    - TODO: the implementation is not at all elegant. I had to create another dictionary to store `[Obj]`, instead of the original `[Obj']`, and I do not know storing `C.SubConstr` inside of `State` make snese or not.
+    - Preview:
+        - ![](assets/170606-subset-size.gif)
+        - ![](assets/170606-subset-size-2.gif)
+        - ![](assets/170606-subset-size-3.gif)
 
 ----------------------------
 ## [Week 1] Starter Project
