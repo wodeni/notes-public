@@ -38,68 +38,7 @@
     - I would not recommend having objects hold their own render functions. It's a good idea, but we can't easily inspect Haskell functions (meaning we can't compute on them, pattern-match on them...). I usually prefer storing things as data rather than as functions.
         - Is this true??
 
-### Random program generator and runtime constraint checking
-- The random generator: `genSub.hs` generates up to 26 objects and arbitrary number of constraints. For example:
-- ![](assets/170607-many.gif)
-- `rnd-1.sub`:
-```
-Set T
-Set V
-Set H
-Point F
-Point R
-Point Y
-NotIn F T
-Subset T V
-Subset T H
-```
-![image](https://user-images.githubusercontent.com/11740102/26896016-74d9300c-4b91-11e7-865c-8370f90fcf3b.png)
-- `rnd-2.sub`:
-```
-Set E
-Set P
-Set L
-Point A
-Point G
-Point Y
-NotIn A E
-Intersect E P
-Intersect E L
-```
-![image](https://user-images.githubusercontent.com/11740102/26896125-c85b1984-4b91-11e7-80a3-7315782e620a.png)
 
-- `rnd-3.sub`
-```
-Set T
-Set C
-Set Q
-Point G
-Point K
-Point Y
-In G T
-NoIntersect T C
-Subset T Q
-```
-![image](https://user-images.githubusercontent.com/11740102/26896188-f253f4ae-4b91-11e7-9f41-a8f7520021ae.png)
-
-- Issues:
-    - We only support single character label for now, that's why the number 26
-    - When the number of constraints exceeds total possible permutations of pairs of point/set and set/set, we get duplicated constraints. Not sure if this will cause any problem
-    - - I insisted on passing around the generator because I want to make sure we can still manually provide a seed and deterministically test the system. (and of course I do not know Monad well)
-    - The program behaves correctly on a couple of the edge cases:
-        - notation: (numSets, numPts, numSubsetConstrs, numPtConstrs)
-        - (0, 5, 0, 5): `genSub: Prelude.!!: index too large`
-        - (5, 0, 0, 5): `genSub: Prelude.!!: negative index`
-        - (3, 3, 12, 0): starting to get repeated pairs, not sure if it will cause problems
-        - (0, 0, 0, 0): printed nothing
-        - Also a couple normal cases, seems to be fine.
-- Constraints: implemented runtime checking for all constraints. Essentially, whenever the EP optimization converges, we run a round of checking. For each constraint in the Substance program, we check if the layout satisfies it. The result is then printed using `trace`
-    - There is also a flag under "frequently used parameter" called `checkStateOn` that controls this behavior.
-    Issues:
-    - When two circles are tangent, I had to add or subtract by some very small offset to eliminate false positives. The offset I used is `0.1`.
-    - The code base is getting a little redundant, which will make our next task, adding style language, even more tedious due to the boiler plate code.
-    - Preview: two bad cases, and a big, consistent case. Notice in one inconsistent case the optimizer converged to violating different constraints, which is interesting.
-    ![170608-check-constr-2](https://user-images.githubusercontent.com/11740102/26948032-f393e87a-4c62-11e7-95d5-b55ac7bc7035.gif)
 
 
 ### Fix to the size problem with `Subset` constraints
@@ -188,7 +127,67 @@ Subset T Q
 
 -------------------------
 # Side project: generating random Penrose program
+- The random generator: `genSub.hs` generates up to 26 objects and arbitrary number of constraints. For example:
+- ![](assets/170607-many.gif)
+- `rnd-1.sub`:
+```
+Set T
+Set V
+Set H
+Point F
+Point R
+Point Y
+NotIn F T
+Subset T V
+Subset T H
+```
+![image](https://user-images.githubusercontent.com/11740102/26896016-74d9300c-4b91-11e7-865c-8370f90fcf3b.png)
+- `rnd-2.sub`:
+```
+Set E
+Set P
+Set L
+Point A
+Point G
+Point Y
+NotIn A E
+Intersect E P
+Intersect E L
+```
+![image](https://user-images.githubusercontent.com/11740102/26896125-c85b1984-4b91-11e7-80a3-7315782e620a.png)
 
+- `rnd-3.sub`
+```
+Set T
+Set C
+Set Q
+Point G
+Point K
+Point Y
+In G T
+NoIntersect T C
+Subset T Q
+```
+![image](https://user-images.githubusercontent.com/11740102/26896188-f253f4ae-4b91-11e7-9f41-a8f7520021ae.png)
+
+- Issues:
+    - We only support single character label for now, that's why the number 26
+    - When the number of constraints exceeds total possible permutations of pairs of point/set and set/set, we get duplicated constraints. Not sure if this will cause any problem
+    - - I insisted on passing around the generator because I want to make sure we can still manually provide a seed and deterministically test the system. (and of course I do not know Monad well)
+    - The program behaves correctly on a couple of the edge cases:
+        - notation: (numSets, numPts, numSubsetConstrs, numPtConstrs)
+        - (0, 5, 0, 5): `genSub: Prelude.!!: index too large`
+        - (5, 0, 0, 5): `genSub: Prelude.!!: negative index`
+        - (3, 3, 12, 0): starting to get repeated pairs, not sure if it will cause problems
+        - (0, 0, 0, 0): printed nothing
+        - Also a couple normal cases, seems to be fine.
+- Constraints: implemented runtime checking for all constraints. Essentially, whenever the EP optimization converges, we run a round of checking. For each constraint in the Substance program, we check if the layout satisfies it. The result is then printed using `trace`
+    - There is also a flag under "frequently used parameter" called `checkStateOn` that controls this behavior.
+    Issues:
+    - When two circles are tangent, I had to add or subtract by some very small offset to eliminate false positives. The offset I used is `0.1`.
+    - The code base is getting a little redundant, which will make our next task, adding style language, even more tedious due to the boiler plate code.
+    - Preview: two bad cases, and a big, consistent case. Notice in one inconsistent case the optimizer converged to violating different constraints, which is interesting.
+    ![170608-check-constr-2](https://user-images.githubusercontent.com/11740102/26948032-f393e87a-4c62-11e7-95d5-b55ac7bc7035.gif)
 - Katherine's Slack post
     * Some thoughts on procedurally generating set theory programs:
     * randomly sample a number of declarations for each kind of object (e.g. point, set, map)
