@@ -4,6 +4,7 @@
 - [A List of Possible Abstractions](#what-abstractions-do-we-want)
 - [Work Log](#work-log)
 - [Random Program Generation](#side-project-generating-random-penrose-program)
+- [Week 1: Starter Project](#week-1-starter-project)
 
 ## TODOs
 
