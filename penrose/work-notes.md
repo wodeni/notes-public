@@ -8,8 +8,6 @@
 
 ## TODOs
 
-- [ ] Collect Style language related materials
-- [ ] Implement Square class
 - [ ] Implement Square related energy functions
     - What is a good design here?
 - [ ] Implement Arrow class
@@ -249,6 +247,10 @@ Subset T Q
 - [06/08/17]
     - [x] Random program generator
     - [x] Create and test checks for all constraints
+- [06/09/17]
+    - [x] Collect Style language related materials
+    - [x] Language design writeup: Style design I
+    - [x] Implement Square class
 
 ---------------------------------
 ## What abstractions do we want?
