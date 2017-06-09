@@ -297,7 +297,7 @@ A {
         - (Potentially) a `constraints` block: we are still undecided about the exact content in this block, but the motivation is that we have ambient functions that operates on multiple objects. Thus, this block will define those functions, which implies that all identifiers should be available to this block.
             - We considered the example of a `tangent` constraint. Consider the disk representation of a graph where vertices are circles and if there is an edge between two vertices, the two circles has to be tangent to each other(p.s.: not sure if this is always possible). he `tangent` constraint operates on two circles, but is triggered by an edge, which is a separate object in the Substance program.
             - Again, we could have the constraints specified in the type and object blocks. One possibility, for a rule over the type `Edge`:
-                -
+                - 
                 ```
                 Edge (e) {
                     constraints += tangent ( e.from.shape, e.to.shape )
