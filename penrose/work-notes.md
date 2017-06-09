@@ -340,6 +340,7 @@ constraints {
     }
     ```
     - Jonathan says this might be over-designing though.
+- Jonathan does not see style as something we "query" during runtime, but instead a process of transforming a set of **abstract math objects and rules** to **concrete graphical primitives and layout constraints**, which I agree, especially from an implementation standpoint, because the current scheme i.e. storing lines of style specification does not seem to scale at all.
 - Whiteboard notes: ![](assets/meeting-notes-e65a6.png)
 - Josh made the following comment in the design document, which I think is worth discussing.  
 > I suspect you are going to want/need other "levels" in the final version. I think it's very useful to be able to name a which can be associated with an arbitrary number of values. Another option is to enable complex selectors in the style program which match particular values. Either strategy enables common examples like styling all sets that are subsets of R^n to be pink and big while all set s that are subsets of R^m to be green and small
