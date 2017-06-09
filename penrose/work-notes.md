@@ -268,9 +268,9 @@ Subset T Q
 - Override policies: Jonathan and I both liked the rules regarding overriding proposed by Katherine (See quote below). These policies do reduce the size and complexity of the program greatly.
 
 > "The main idea behind Style is that every line is an override of some setting at some specificity. There is always some kind of global default style provided. Each line in a Style program specifies an override of a characteristic at one of three levels:
-1. the global level (over all types)
-2. the type level (over all variables of that type in Substance)
-3. the value level (over only variables of that name in Substance)
+> 1. the global level (over all types)
+> 2. the type level (over all variables of that type in Substance)
+> 3. the value level (over only variables of that name in Substance)
 
 ```
 global {
@@ -297,7 +297,8 @@ A {
         - (Potentially) a `constraints` block: we are still undecided about the exact content in this block, but the motivation is that we have ambient functions that operates on multiple objects. Thus, this block will define those functions, which implies that all identifiers should be available to this block.
             - We considered the example of a `tangent` constraint. Consider the disk representation of a graph where vertices are circles and if there is an edge between two vertices, the two circles has to be tangent to each other(p.s.: not sure if this is always possible). he `tangent` constraint operates on two circles, but is triggered by an edge, which is a separate object in the Substance program.
             - Again, we could have the constraints specified in the type and object blocks. One possibility, for a rule over the type `Edge`:
-                - ```
+                -
+                ```
                 Edge (e) {
                     constraints += tangent ( e.from.shape, e.to.shape )
                 }
@@ -321,7 +322,8 @@ constraints {
 ```
 - Overlapping: what if we want to make objects that are under other objects to have different styles?
     - Jonathan think instead if a numerical priority level, we can just define two modes for rendering an object: `background` and `foreground`. We have not discussed the syntax for that, but one can easily cook up one. An example:
-        - ```
+        -
+        ```
           Set {
               foreground:
                 shape.outline = solid
