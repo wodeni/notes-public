@@ -297,7 +297,6 @@ A {
         - (Potentially) a `constraints` block: we are still undecided about the exact content in this block, but the motivation is that we have ambient functions that operates on multiple objects. Thus, this block will define those functions, which implies that all identifiers should be available to this block.
             - We considered the example of a `tangent` constraint. Consider the disk representation of a graph where vertices are circles and if there is an edge between two vertices, the two circles has to be tangent to each other(p.s.: not sure if this is always possible). he `tangent` constraint operates on two circles, but is triggered by an edge, which is a separate object in the Substance program.
             - Again, we could have the constraints specified in the type and object blocks. One possibility, for a rule over the type `Edge`:
-                - 
                 ```
                 Edge (e) {
                     constraints += tangent ( e.from.shape, e.to.shape )
@@ -322,13 +321,12 @@ constraints {
 ```
 - Overlapping: what if we want to make objects that are under other objects to have different styles?
     - Jonathan think instead if a numerical priority level, we can just define two modes for rendering an object: `background` and `foreground`. We have not discussed the syntax for that, but one can easily cook up one. An example:
-        -
         ```
-          Set {
-              foreground:
-                shape.outline = solid
-              background:
-                shape.outline = dotted
-          }
-          ```
+        Set {
+          foreground:
+            shape.outline = solid
+          background:
+            shape.outline = dotted
+        }
+        ```
 - Whiteboard notes: ![](assets/meeting-notes-e65a6.png)
