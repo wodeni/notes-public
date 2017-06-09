@@ -302,6 +302,9 @@ A {
                     constraints += tangent ( e.from.shape, e.to.shape )
                 }
                 ```
+    - Why this syntax??
+        - We think this syntax is more Substance-oriented because we structure the program by primitives and types defined in the Substance program.
+        - The previous assembly like syntax gets really lengthy and unreadable. Especially when you are trying to track the order of overriding. The aforementioned structure, however, explicitly lay out the hierarchy.
 
 ```
 global {
@@ -329,4 +332,12 @@ constraints {
             shape.outline = dotted
         }
         ```
+- Semantic checking: we should definitely check the validity of references to identifiers, but we did not agree that we should check for things like `Shape Map Box`, because this restriction is rather arbitrary. The user should have the liberty to represent math objects using unusual graphical primitives.
+    - If we really want to check that, I suggested a enum-like syntax in type blocks:
+    ```
+    Set {
+        shape = { circle, square }
+    }
+    ```
+    - Jonathan says this might be over-designing though.
 - Whiteboard notes: ![](assets/meeting-notes-e65a6.png)
