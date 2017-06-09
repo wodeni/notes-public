@@ -17,6 +17,8 @@
 - [ ] A strategy for selecting a graphical primitive given shaped spec in Style
 - [ ] Label BBox seems to be a little off, but it is now functional
 - [ ] Fix the order of selection, or decide not to fix it at all
+- [06/12/17]
+    - [ ] Prep for Wednesday meeting
 
 
 ---------------------------------------------------
@@ -254,3 +256,77 @@ Subset T Q
 - An unified interface for objective function
     - Signed distance
     - At the same time, we should allow advanced users to provide their own custom implementations
+
+---
+# [170609] Style Language Design Meeting with Jonathan
+
+- Went through a couple of examples:
+    - Proposal: object/record based design
+    - Slides: Substance/View/Style
+        - Jonathan and I both forgot about the intuition behind View.
+- Readability issues with the current design: `Color A Yellow 0.5` would not make sense to a person who is new to the language, unless he/she has the grammar or user manual. If we have multiple numerical arguments, it could be even worse. For example, `Shape Set Ractangle 10 20`, which one is width?
+- Override policies: Jonathan and I both liked the rules regarding overriding proposed by Katherine (See quote below). These policies do reduce the size and complexity of the program greatly.
+
+> "The main idea behind Style is that every line is an override of some setting at some specificity. There is always some kind of global default style provided. Each line in a Style program specifies an override of a characteristic at one of three levels:
+1. the global level (over all types)
+2. the type level (over all variables of that type in Substance)
+3. the value level (over only variables of that name in Substance)
+
+```
+global {
+    label = auto -- same thing without this line, using the default value
+    shape = circle
+}
+Set {
+    shape = Circle  -- default arguments are used here
+    color = Black
+}
+A {
+    shape = Square { side = 3, color = Blue, outline = dotted }
+    -- Also possible not to specify the shape and modify fields in the default configuration
+    -- shape.color.opacity = 0.5
+}
+```
+
+- Alternative structure of a style program:
+    - For now, a style program is organized as a collection of lines.
+    - We discussed another possible JSON-like structure. A style program is a collection of "blocks", either enclosed by `{}` or organized by indentation. We have several types of blocks
+        - A `global` block: includes global settings such as "shape = circle", meaning "whatever it is you draw, the default shape is a circle"
+        - Several type blocks: corresponds to the types in the Substance language. In our set theory example, they would be `Set`, `Point`, or `Map`.
+        - Object blocks: denoted by identifiers of an object declared in the Substance program, the object block contains settings to one specific object
+        - (Potentially) a `constraints` block: we are still undecided about the exact content in this block, but the motivation is that we have ambient functions that operates on multiple objects. Thus, this block will define those functions, which implies that all identifiers should be available to this block.
+            - We considered the example of a `tangent` constraint. Consider the disk representation of a graph where vertices are circles and if there is an edge between two vertices, the two circles has to be tangent to each other(p.s.: not sure if this is always possible). he `tangent` constraint operates on two circles, but is triggered by an edge, which is a separate object in the Substance program.
+            - Again, we could have the constraints specified in the type and object blocks. One possibility, for a rule over the type `Edge`:
+                - ```
+                Edge (e) {
+                    constraints += tangent ( e.from.shape, e.to.shape )
+                }
+                ```
+
+```
+global {
+    -- Some global config here
+}
+Vertex {
+    -- Vertex styling
+}
+Edge {
+    -- Edge styling
+}
+constraints {
+    forall Edge e {
+        tangent ( e.from.shape, e.to.shape )
+    }
+}
+```
+- Overlapping: what if we want to make objects that are under other objects to have different styles?
+    - Jonathan think instead if a numerical priority level, we can just define two modes for rendering an object: `background` and `foreground`. We have not discussed the syntax for that, but one can easily cook up one. An example:
+        - ```
+          Set {
+              foreground:
+                shape.outline = solid
+              background:
+                shape.outline = dotted
+          }
+          ```
+- Whiteboard notes: ![](assets/meeting-notes-e65a6.png)
