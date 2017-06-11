@@ -9,7 +9,9 @@
 ## TODOs
 
 - [ ] Implement Square related energy functions
-    - What is a good design here?
+    - Intersection:
+        - `NoIntersect`: make sure its further than the half diagonal
+        - `Intersect`: should be closer than `side`
 - [ ] Implement Arrow class
 - [ ] Implement Arrow related energy functions
 - [ ] A strategy for selecting a graphical primitive given shaped spec in Style
