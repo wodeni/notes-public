@@ -243,7 +243,7 @@ Subset T Q
 ## Work log
 
 - [06/10/17]
-    - [x] Build a key-value store from substance id to style info (C.SubShape for now)
+    - [x] Build a key-value store from substance id to style info (`C.SubShape` for now)
     - [x] Added energy functions and `inObj` function
     - [x] thoughts on object representation in the system
 - [06/09/17]
