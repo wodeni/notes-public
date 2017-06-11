@@ -240,43 +240,45 @@ Subset T Q
 ---------------
 ## Work log
 
-- [05/31/17]
-    - [x] Came up with a quick fix to the label centering issue
-    - [x] Solid color for circles
-- [06/01/17]
-    - [x] Randomize color on start-up
-    - [x] Complete Compiler support for `Point`
-    - [x] Make a plan for adding Point
-    - [x] Test on rendering points in the system
-    - [x] Complete the boiler plate section of the code (pack, unpack etc)
+- [06/10/17]
+    - [x] Build a key-value store from substance id to style info (C.SubShape for now)
+    - [x] Added energy functions and `inObj` function
+    - [x] thoughts on object representation in the system
+- [06/09/17]
+    - [x] Collect Style language related materials
+    - [x] Language design writeup: Style design I
+    - [x] Implement Square class and continue working on Style parsing
+- [06/08/17]
+    - [x] Random program generator
+    - [x] Create and test checks for all constraints
+- [06/07/17]
+    - [x] Random generation for set and point constraints
+    - [x] Attempted to place all labels at the top level. Graphically, they all worked okay, but the selection is a little off here.
+- [06/06/17]
+    - [x] Fix the problem with subsets having random sizes
+    - [x] Random generation for set/point decls
+- [06/05/17]
+    - [x] Implemented `HollowDot` and `Cros` shapes and rendering functions for `Pt`
+    - [x] Initial plan for the subset bug fix and implementation for different `Style` primitives
+- [06/04/17]
+    - Off
+- [06/03/17]
+    - Meeting with Katherine and laid out the plan for the upcoming week
 - [06/02/17]
     - [x] Fixed parts commented in PR
     - [x] Added the first objective function `pointInExt`
     - [x] Design energy function for `PointIn` and `PointNotIn`
     - [x] Read Katherine's doc on obj fns and come up with questions
         - Read 2.5 times and no problem found, might need details on packing later
-- [06/03/17]
-    - Meeting with Katherine and laid out the plan for the upcoming week
-- [06/04/17]
-    - Off
-- [06/05/17]
-    - [x] Implemented `HollowDot` and `Cros` shapes and rendering functions for `Pt`
-    - [x] Initial plan for the subset bug fix and implementation for different `Style` primitives
-- [06/06/17]
-    - [x] Fix the problem with subsets having random sizes
-    - [x] Random generation for set/point decls
-- [06/07/17]
-    - [x] Random generation for set and point constraints
-    - [x] Attempted to place all labels at the top level. Graphically, they all worked okay, but the selection is a little off here.
-- [06/08/17]
-    - [x] Random program generator
-    - [x] Create and test checks for all constraints
-- [06/09/17]
-    - [x] Collect Style language related materials
-    - [x] Language design writeup: Style design I
-    - [x] Implement Square class and continue working on Style parsing
-- [06/10/17]
-    - [x] Build a key-value store from substance id to style info (C.SubShape for now)
+- [06/01/17]
+    - [x] Randomize color on start-up
+    - [x] Complete Compiler support for `Point`
+    - [x] Make a plan for adding Point
+    - [x] Test on rendering points in the system
+    - [x] Complete the boiler plate section of the code (pack, unpack etc)
+- [05/31/17]
+    - [x] Came up with a quick fix to the label centering issue
+    - [x] Solid color for circles
 
 ---------------------------------
 ## What abstractions do we want?
