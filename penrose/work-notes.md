@@ -23,7 +23,33 @@
 
 ## [Week 2] Continuous Map and miscellaneous fixes
 
+### Should we do Template Haskell??
+
+- Adding a square into the system take two hundred insertions (rough estimation). An incomplete list:
+    - Add a type `Square` and a "primed" type `Square'` to make `autodiff` happy
+    - Add a render function
+    - Add `inObj` function for selection by the user
+    - Add energy functions:
+        - For set, `subsetFn` has to match with square-square, square-circle, circle-square subset relationships.
+    - Add pack and unpack functions, and decided which parameter is varying and which ones are fixed. For instance, I decided to not optimize the angle of the square and make it fixed.
+- So, we might really need to add some templated stuffs.
+
 ### Parsing the `Style` specifications
+
+- Thoughts on the representation of objects in the system:
+    - I am writing because the mapping of the Style dictionary is not exactly clear to me.  
+    - We start from a Substance program, which contains:
+        - Abstract math objects denoted by identifiers: `Set A`
+        - Pairwise (for now) constraints across types: `PointIn P B`, `Subset A B`
+    - And then, we parse Substance and get a bunch of `SubDecl`s and `SubConstr`s. We also parse style and get `Styline`s
+    - When we start up our runtime, we need to know what the shape each of those math objects has and some specifications about these concrete objects
+    - It is clear that we have a new set of objects: math objects with Style information -> styled objects
+    - What are those information?
+        - Color, line, priority, direction, label, scale, absPos
+    - Notice that these styled objects are still different from what we are going to render. For example, labels should be rendered individually (and labels might be the only exception here)
+    - Therefore, it might be a good idea to add another layer of abstraction here?
+
+
 - Possible designs for storage of Style information
     - First, due to my current Haskell ability, some of the proposals might not make sense/isn't optimal
     - **Option 1**: storing the style information directly inside the objects.  
@@ -38,8 +64,6 @@
     - Some parts of Style are relevant to the optimization and can be changed by it (e.g. anything numerical, like angle and color), and some aren't (e.g. anything categorical, like whether the shape is a square or a circle). I suggest storing the former as fields in the record (e.g. radius of circle) and the latter as a list of style lines `StyLine`, which is then passed to the render function at the end. The list of style lines for each object will have to take into account the overrides.
     - I would not recommend having objects hold their own render functions. It's a good idea, but we can't easily inspect Haskell functions (meaning we can't compute on them, pattern-match on them...). I usually prefer storing things as data rather than as functions.
         - Is this true??
-
-
 
 
 ### Fix to the size problem with `Subset` constraints
@@ -250,7 +274,9 @@ Subset T Q
 - [06/09/17]
     - [x] Collect Style language related materials
     - [x] Language design writeup: Style design I
-    - [x] Implement Square class
+    - [x] Implement Square class and continue working on Style parsing
+- [06/10/17]
+    - [x] Build a key-value store from substance id to style info (C.SubShape for now)
 
 ---------------------------------
 ## What abstractions do we want?
