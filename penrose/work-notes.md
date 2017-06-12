@@ -242,6 +242,9 @@ Subset T Q
 ---------------
 ## Work log
 
+- [06/11/17]
+    - [x] Added `NoIntersect` and `Intersect` energy functions
+    - [x] Meeting with Katherine and set up next week's goals
 - [06/10/17]
     - [x] Build a key-value store from substance id to style info (`C.SubShape` for now)
     - [x] Added energy functions and `inObj` function
