@@ -8,13 +8,9 @@
 
 ## TODOs
 
-- [ ] Implement Square related energy functions
-    - Intersection:
-        - `NoIntersect`: make sure its further than the half diagonal
-        - `Intersect`: should be closer than `side`
-- [ ] Implement Arrow class
-- [ ] Implement Arrow related energy functions
-- [ ] A strategy for selecting a graphical primitive given shaped spec in Style
+- [ ] A better label function
+- [ ] OpenSet support
+    - [ ] BUG: passing direction in `centerMap` causes hanging
 - [ ] Label BBox seems to be a little off, but it is now functional
 - [ ] Fix the order of selection, or decide not to fix it at all
 - [06/12/17]
@@ -22,6 +18,21 @@
 
 
 ---------------------------------------------------
+
+## [Week 3] Continuous Map II, Style language I
+
+### Continuous Map II
+
+- Question about map’s energy function: I want to design a function such that both the tip and the end of the arrow is right outside of the sets, with some spacing from the borders. So I compute the vector of the direction from one set to another.
+
+### Style language I
+
+- [The central design document]( https://docs.google.com/document/d/1si_Wncsq5PjLw8M1_w_KWr4n9jhVlLI90cFCoI4lk68/edit#heading=h.5pqdcw5sk0sh)
+
+### Other
+
+- SVG migration: what is the interface that we need to expose to Snap.SVG?
+
 
 ## [Week 2] Continuous Map and miscellaneous fixes
 
@@ -242,6 +253,14 @@ Subset T Q
 ---------------
 ## Work log
 
+- [05/14/17]
+    - [x] Fix Arrow related energy functions
+- [06/13/17]
+    - [x] Design document
+    - [x] making some diagrams in TikZ or Asymptote
+- [06/12/17]
+    - [x] implemented rendering for arrows
+    - [x] first working version of continuous map example!
 - [06/11/17]
     - [x] Added `NoIntersect` and `Intersect` energy functions
     - [x] Meeting with Katherine and set up next week's goals
