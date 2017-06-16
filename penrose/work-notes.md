@@ -19,15 +19,29 @@
 
 ### Continuous Map II
 
-- Question about map’s energy function: I want to design a function such that both the tip and the end of the arrow is right outside of the sets, with some spacing from the borders. So I compute the vector of the direction from one set to another.
+- Now the map example is almost fully working, with minor issues on labels. We decided not to deal with accurate label bbox measuring until the migration to JS.
+    - `toLeft` force the from-set to the left of the to-set
+    - `centerMap` force the map to start from just outside the shape of the from-set and end just outside the shape of the to-set. When the two sets are too close, just point from center to center instead
+- Implemented a simple constraint function, triggered by `Subset`, forcing the label of a set the stay out of its subsets
+    - Problem: this rule does not work all the time, because there can be overlapping sets that are not of subset relationship. A mutual repel function is needed for this purpose.
+- The right combination of these constraint function is an art. I don't think there is any quantitative way other than running NN on all of Keenan's work.
+    - This can be a good project: what is a good looking mathematical diagram?
 
 ### Style language I
 
 - [The central design document]( https://docs.google.com/document/d/1si_Wncsq5PjLw8M1_w_KWr4n9jhVlLI90cFCoI4lk68/edit#heading=h.5pqdcw5sk0sh)
+- Still debating...
+    - Alex and Happy: the good old lex/yacc syntax, and debugging for grammar(remember those shift/reduce errors?)
+    - Megaparsec: seems to be well-maintained and a popular choice, but I have no clue how to write them though.
 
 ### Other
 
 - SVG migration: what is the interface that we need to expose to Snap.SVG?
+    - There are people who used `ghcjs` to create Haskell bindings of JS program, or even compiling Haskell to JS altogether.
+    - Translating the state to JSON might just to too slow, but worth a shot
+    - Doesn't need to be real-time, can manually control stepping in the worst case
+- WebGL: Seems like it only produces raster images, but we want vector images
+    - If we were to switch to 3D at some point, `three.js` might be a good library to work on
 
 
 ## [Week 2] Continuous Map and miscellaneous fixes
@@ -249,6 +263,8 @@ Subset T Q
 ---------------
 ## Work log
 
+- [05/16/17]
+    - [x] Some googling about JS migration
 - [05/15/17]
     - [x] Fix dictionary, now mapping names to `[StyLine]`
     - [x] Refactored out a lot of the dictionary lookups
@@ -312,91 +328,3 @@ Subset T Q
 - An unified interface for objective function
     - Signed distance
     - At the same time, we should allow advanced users to provide their own custom implementations
-
----
-# [170609] Style Language Design Meeting with Jonathan
-
-- Went through a couple of examples:
-    - Proposal: object/record based design
-    - Slides: Substance/View/Style
-        - Jonathan and I both forgot about the intuition behind View.
-- Readability issues with the current design: `Color A Yellow 0.5` would not make sense to a person who is new to the language, unless he/she has the grammar or user manual. If we have multiple numerical arguments, it could be even worse. For example, `Shape Set Ractangle 10 20`, which one is width?
-- Override policies: Jonathan and I both liked the rules regarding overriding proposed by Katherine (See quote below). These policies do reduce the size and complexity of the program greatly.
-
-> "The main idea behind Style is that every line is an override of some setting at some specificity. There is always some kind of global default style provided. Each line in a Style program specifies an override of a characteristic at one of three levels:
-> 1. the global level (over all types)
-> 2. the type level (over all variables of that type in Substance)
-> 3. the value level (over only variables of that name in Substance)
-
-```
-global {
-    label = auto -- same thing without this line, using the default value
-    shape = circle
-}
-Set {
-    shape = Circle  -- default arguments are used here
-    color = Black
-}
-A {
-    shape = Square { side = 3, color = Blue, outline = dotted }
-    -- Also possible not to specify the shape and modify fields in the default configuration
-    -- shape.color.opacity = 0.5
-}
-```
-
-- Alternative structure of a style program:
-    - For now, a style program is organized as a collection of lines.
-    - We discussed another possible JSON-like structure. A style program is a collection of "blocks", either enclosed by `{}` or organized by indentation. We have several types of blocks
-        - A `global` block: includes global settings such as "shape = circle", meaning "whatever it is you draw, the default shape is a circle"
-        - Several type blocks: corresponds to the types in the Substance language. In our set theory example, they would be `Set`, `Point`, or `Map`.
-        - Object blocks: denoted by identifiers of an object declared in the Substance program, the object block contains settings to one specific object
-        - (Potentially) a `constraints` block: we are still undecided about the exact content in this block, but the motivation is that we have ambient functions that operates on multiple objects. Thus, this block will define those functions, which implies that all identifiers should be available to this block.
-            - We considered the example of a `tangent` constraint. Consider the disk representation of a graph where vertices are circles and if there is an edge between two vertices, the two circles has to be tangent to each other(p.s.: not sure if this is always possible). he `tangent` constraint operates on two circles, but is triggered by an edge, which is a separate object in the Substance program.
-            - Again, we could have the constraints specified in the type and object blocks. One possibility, for a rule over the type `Edge`:
-                ```
-                Edge (e) {
-                    constraints += tangent ( e.from.shape, e.to.shape )
-                }
-                ```
-    - Why this syntax??
-        - We think this syntax is more Substance-oriented because we structure the program by primitives and types defined in the Substance program.
-        - The previous assembly like syntax gets really lengthy and unreadable. Especially when you are trying to track the order of overriding. The aforementioned structure, however, explicitly lay out the hierarchy.
-
-```
-global {
-    -- Some global config here
-}
-Vertex {
-    -- Vertex styling
-}
-Edge {
-    -- Edge styling
-}
-constraints {
-    forall Edge e {
-        tangent ( e.from.shape, e.to.shape )
-    }
-}
-```
-- Overlapping: what if we want to make objects that are under other objects to have different styles?
-    - Jonathan think instead if a numerical priority level, we can just define two modes for rendering an object: `background` and `foreground`. We have not discussed the syntax for that, but one can easily cook up one. An example:
-        ```
-        Set {
-          foreground:
-            shape.outline = solid
-          background:
-            shape.outline = dotted
-        }
-        ```
-- Semantic checking: we should definitely check the validity of references to identifiers, but we did not agree that we should check for things like `Shape Map Box`, because this restriction is rather arbitrary. The user should have the liberty to represent math objects using unusual graphical primitives.
-    - If we really want to check that, I suggested a enum-like syntax in type blocks:
-    ```
-    Set {
-        shape = { circle, square }
-    }
-    ```
-    - Jonathan says this might be over-designing though.
-- Jonathan does not see style as something we "query" during runtime, but instead a process of transforming a set of **abstract math objects and rules** to **concrete graphical primitives and layout constraints**, which I agree, especially from an implementation standpoint, because the current scheme i.e. storing lines of style specification does not seem to scale at all.
-- Whiteboard notes: ![](assets/meeting-notes-e65a6.png)
-- Josh made the following comment in the design document, which I think is worth discussing.  
-> I suspect you are going to want/need other "levels" in the final version. I think it's very useful to be able to name a which can be associated with an arbitrary number of values. Another option is to enable complex selectors in the style program which match particular values. Either strategy enables common examples like styling all sets that are subsets of R^n to be pink and big while all set s that are subsets of R^m to be green and small
