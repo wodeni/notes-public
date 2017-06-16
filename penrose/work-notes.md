@@ -8,13 +8,9 @@
 
 ## TODOs
 
-- [ ] A better label function
 - [ ] OpenSet support
-    - [ ] BUG: passing direction in `centerMap` causes hanging
 - [ ] Label BBox seems to be a little off, but it is now functional
 - [ ] Fix the order of selection, or decide not to fix it at all
-- [06/12/17]
-    - [ ] Prep for Wednesday meeting
 
 
 ---------------------------------------------------
@@ -253,8 +249,14 @@ Subset T Q
 ---------------
 ## Work log
 
+- [05/15/17]
+    - [x] Fix dictionary, now mapping names to `[StyLine]`
+    - [x] Refactored out a lot of the dictionary lookups
+    - [x] A better label function
 - [05/14/17]
     - [x] Fix Arrow related energy functions
+    - [x] Created penroseDB, a database for counting lines of Penrose programs
+    - [x] Initial investigation on porting to JS
 - [06/13/17]
     - [x] Design document
     - [x] making some diagrams in TikZ or Asymptote
