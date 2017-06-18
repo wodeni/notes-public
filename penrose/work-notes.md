@@ -8,6 +8,7 @@
 
 ## TODOs
 
+- Let Katherine know when the next language design meeting happens and she will notify Cyrus Omar
 - [ ] OpenSet support
 - [ ] Label BBox seems to be a little off, but it is now functional
 - [ ] Fix the order of selection, or decide not to fix it at all
@@ -33,6 +34,9 @@
 - Still debating...
     - Alex and Happy: the good old lex/yacc syntax, and debugging for grammar(remember those shift/reduce errors?)
     - Megaparsec: seems to be well-maintained and a popular choice, but I have no clue how to write them though.
+- [UPDATE]: decided to use Megaparsec because of their compelling README document ![here](https://github.com/mrkkrp/megaparsec#comparison-with-other-solutions), which lists comparisons with other popular solutions.
+- I have implemented a simple parser in `StyAst.hs`, which would only parse global blocks with shape specs right now, but this means it at least works.
+    - To run it, simply `ghc StyAst; ./StyAst <a-style-src-file>`
 
 ### Other
 
@@ -40,6 +44,7 @@
     - There are people who used `ghcjs` to create Haskell bindings of JS program, or even compiling Haskell to JS altogether.
     - Translating the state to JSON might just to too slow, but worth a shot
     - Doesn't need to be real-time, can manually control stepping in the worst case
+    - Collection of some Canvas-based vector graphic library in JS: https://stackoverflow.com/questions/4340040/html5-canvas-vector-graphics
 - WebGL: Seems like it only produces raster images, but we want vector images
     - If we were to switch to 3D at some point, `three.js` might be a good library to work on
 
@@ -263,13 +268,17 @@ Subset T Q
 ---------------
 ## Work log
 
-- [05/16/17]
+- [06/17/17]
+    - [x] set up for megaparsec
+    - [x] first version of Style parser for the block-based design
+- [06/16/17]
     - [x] Some googling about JS migration
-- [05/15/17]
+    - [x] Attempted to setup GhcJS and failed
+- [06/15/17]
     - [x] Fix dictionary, now mapping names to `[StyLine]`
     - [x] Refactored out a lot of the dictionary lookups
     - [x] A better label function
-- [05/14/17]
+- [06/14/17]
     - [x] Fix Arrow related energy functions
     - [x] Created penroseDB, a database for counting lines of Penrose programs
     - [x] Initial investigation on porting to JS
