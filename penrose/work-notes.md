@@ -47,6 +47,8 @@
     - `centerMap` force the map to start from just outside the shape of the from-set and end just outside the shape of the to-set. When the two sets are too close, just point from center to center instead
 - Implemented a simple constraint function, triggered by `Subset`, forcing the label of a set the stay out of its subsets
     - Problem: this rule does not work all the time, because there can be overlapping sets that are not of subset relationship. A mutual repel function is needed for this purpose.
+- Preview of the new continuous map example:
+![](assets/170615-label.gif)
 - The right combination of these constraint function is an art. I don't think there is any quantitative way other than running NN on all of Keenan's work.
     - This can be a good project: what is a good looking mathematical diagram?
 
@@ -56,7 +58,7 @@
 - Still debating...
     - Alex and Happy: the good old lex/yacc syntax, and debugging for grammar(remember those shift/reduce errors?)
     - Megaparsec: seems to be well-maintained and a popular choice, but I have no clue how to write them though.
-- [UPDATE]: decided to use Megaparsec because of their compelling README document ![here](https://github.com/mrkkrp/megaparsec#comparison-with-other-solutions), which lists comparisons with other popular solutions.
+- [UPDATE]: decided to use Megaparsec because of their compelling README document [here](https://github.com/mrkkrp/megaparsec#comparison-with-other-solutions), which lists comparisons with other popular solutions.
 - I have implemented a simple parser in `StyAst.hs`, which would only parse global blocks with shape specs right now, but this means it at least works.
     - To run it, simply `ghc StyAst; ./StyAst <a-style-src-file>`
 
