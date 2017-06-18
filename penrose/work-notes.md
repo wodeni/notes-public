@@ -38,13 +38,14 @@
 - I have implemented a simple parser in `StyAst.hs`, which would only parse global blocks with shape specs right now, but this means it at least works.
     - To run it, simply `ghc StyAst; ./StyAst <a-style-src-file>`
 
-### Other
+### Other Notes
 
 - Refactoring of the code base:
     - I only refactored all constraint functions, because they took up the majority of the boilerplate code.
     - The `M.lookup` calls is handled in `lookupNames`
     - I force all constraint functions to have the same signature `    (Floating a, Real a, Show a, Ord a) => [Obj' a] -> a`, and factored out a list of `Name`s, just like Katherine suggested
-    - To add a constraint function, just (1)add a function to the list, along with functions like `subsetFn`; (2) add a line in `genConstrFn`
+    - To add a constraint function, just (1)add a function to the list, along with functions like `subsetFn`; (2) add a line in `genConstrFn`.
+    - Notice that for a constraint line in Substance, you can choose to have multiple functions associated with it. For instance, `avoidSubsets` and `subsetFn` are all triggered by a `Subset` statement in the Substance program
 - SVG migration: what is the interface that we need to expose to Snap.SVG?
     - There are people who used `ghcjs` to create Haskell bindings of JS program, or even compiling Haskell to JS altogether.
     - Translating the state to JSON might just to too slow, but worth a shot
