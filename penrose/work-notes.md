@@ -1,10 +1,29 @@
 # Penrose Work Notes
 
-# Table of Contents
-- [A List of Possible Abstractions](#what-abstractions-do-we-want)
-- [Work Log](#work-log)
-- [Random Program Generation](#side-project-generating-random-penrose-program)
-- [Week 1: Starter Project](#week-1-starter-project)
+# Table of Content
+<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+
+- [Penrose Work Notes](#penrose-work-notes)
+- [Table of Content](#table-of-content)
+	- [TODOs](#todos)
+	- [[Week 3] Continuous Map II, Style language I](#week-3-continuous-map-ii-style-language-i)
+		- [Continuous Map II](#continuous-map-ii)
+		- [Style language I](#style-language-i)
+		- [Other Notes](#other-notes)
+	- [[Week 2] Continuous Map and miscellaneous fixes](#week-2-continuous-map-and-miscellaneous-fixes)
+		- [Should we do Template Haskell??](#should-we-do-template-haskell)
+		- [Parsing the `Style` specifications](#parsing-the-style-specifications)
+		- [Fix to the size problem with `Subset` constraints](#fix-to-the-size-problem-with-subset-constraints)
+	- [[Week 1] Starter Project](#week-1-starter-project)
+		- [Adding Points](#adding-points)
+		- [Color Support](#color-support)
+		- [Centering the texts](#centering-the-texts)
+- [Side project: generating random Penrose program](#side-project-generating-random-penrose-program)
+- [Random quotes and notes](#random-quotes-and-notes)
+	- [Work log](#work-log)
+	- [What abstractions do we want?](#what-abstractions-do-we-want)
+
+<!-- /TOC -->
 
 ## TODOs
 
