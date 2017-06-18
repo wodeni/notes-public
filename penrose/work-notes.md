@@ -20,8 +20,8 @@
 		- [Centering the texts](#centering-the-texts)
 - [Side project: generating random Penrose program](#side-project-generating-random-penrose-program)
 - [Random quotes and notes](#random-quotes-and-notes)
-	- [Work log](#work-log)
-	- [What abstractions do we want?](#what-abstractions-do-we-want)
+- [Work log](#work-log)
+- [What abstractions do we want?](#what-abstractions-do-we-want)
 
 <!-- /TOC -->
 
@@ -291,7 +291,7 @@ Subset T Q
     best solution is to turn off `constraintFlag` and make minor fixes to `noneOverlap` and `noOverlapPair`
 
 ---------------
-## Work log
+# Work log
 
 - [06/17/17]
     - [x] set up for megaparsec
@@ -357,7 +357,7 @@ Subset T Q
     - [x] Solid color for circles
 
 ---------------------------------
-## What abstractions do we want?
+# What abstractions do we want?
 
 - An unified interface for objective function
     - Signed distance
