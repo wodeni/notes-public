@@ -1,10 +1,8 @@
 # Penrose Work Notes
 
-# Table of Content
 <!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
 - [Penrose Work Notes](#penrose-work-notes)
-- [Table of Content](#table-of-content)
 - [TODOs](#todos)
 - [Weekly Notes](#weekly-notes)
 	- [[Week 3] Continuous Map II, Style language I](#week-3-continuous-map-ii-style-language-i)
