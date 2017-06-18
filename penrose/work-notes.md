@@ -40,6 +40,11 @@
 
 ### Other
 
+- Refactoring of the code base:
+    - I only refactored all constraint functions, because they took up the majority of the boilerplate code.
+    - The `M.lookup` calls is handled in `lookupNames`
+    - I force all constraint functions to have the same signature `    (Floating a, Real a, Show a, Ord a) => [Obj' a] -> a`, and factored out a list of `Name`s, just like Katherine suggested
+    - To add a constraint function, just (1)add a function to the list, along with functions like `subsetFn`; (2) add a line in `genConstrFn`
 - SVG migration: what is the interface that we need to expose to Snap.SVG?
     - There are people who used `ghcjs` to create Haskell bindings of JS program, or even compiling Haskell to JS altogether.
     - Translating the state to JSON might just to too slow, but worth a shot
