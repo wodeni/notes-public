@@ -6,6 +6,7 @@
 - [Penrose Work Notes](#penrose-work-notes)
 - [Table of Content](#table-of-content)
 - [TODOs](#todos)
+- [Weekly Notes](#weekly-notes)
 	- [[Week 3] Continuous Map II, Style language I](#week-3-continuous-map-ii-style-language-i)
 		- [Continuous Map II](#continuous-map-ii)
 		- [Style language I](#style-language-i)
@@ -25,6 +26,7 @@
 
 <!-- /TOC -->
 
+---------
 # TODOs
 
 - Let Katherine know when the next language design meeting happens and she will notify Cyrus Omar
@@ -34,6 +36,7 @@
 
 
 ---------------------------------------------------
+# Weekly Notes
 
 ## [Week 3] Continuous Map II, Style language I
 
