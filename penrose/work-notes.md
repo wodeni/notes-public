@@ -5,6 +5,10 @@
 - [Penrose Work Notes](#penrose-work-notes)
 - [TODOs](#todos)
 - [Weekly Notes](#weekly-notes)
+	- [[Week 4] Style Language II, Porting to Web I](#week-4-style-language-ii-porting-to-web-i)
+		- [Style Language II](#style-language-ii)
+		- [Porting to Web I](#porting-to-web-i)
+		- [Other notes](#other-notes)
 	- [[Week 3] Continuous Map II, Style language I](#week-3-continuous-map-ii-style-language-i)
 		- [Continuous Map II](#continuous-map-ii)
 		- [Style language I](#style-language-i)
@@ -35,6 +39,14 @@
 
 ---------------------------------------------------
 # Weekly Notes
+
+## [Week 4] Style Language II, Porting to Web I
+
+### Style Language II
+
+### Porting to Web I
+
+### Other notes
 
 ## [Week 3] Continuous Map II, Style language I
 
@@ -296,6 +308,11 @@ Subset T Q
 ---------------
 # Work log
 
+- [06/19/17]
+	- [x] New parser achieved equivalent functionalities of the original one
+- [06/18/17]
+	- [x] Meeting with Katherine
+	- off mostly
 - [06/17/17]
     - [x] set up for megaparsec
     - [x] first version of Style parser for the block-based design
