@@ -31,7 +31,6 @@
 ---------
 # TODOs
 
-- [ ] Finish porting to the web
 - [ ] Write blog post about general position
 - [ ] Plan out the new compiler design
 - Let Katherine know when the next language design meeting happens and she will notify Cyrus Omar
@@ -383,6 +382,7 @@ Subset T Q
 
 - [06/23/17]
 	- [x] Better CSS for the web gui!
+	- [x] Fixed dragging
 - [06/22/17]
 	- [x] implemented basically all functionalities of the web GUI
 	- [x] resample, autostep, step controlled by buttons
