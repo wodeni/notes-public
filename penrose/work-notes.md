@@ -5,9 +5,9 @@
 - [Penrose Work Notes](#penrose-work-notes)
 - [TODOs](#todos)
 - [Weekly Notes](#weekly-notes)
-	- [[Week 4] Style Language II, Porting to Web I](#week-4-style-language-ii-porting-to-web-i)
+	- [[Week 4] Style Language II, Porting to Web](#week-4-style-language-ii-porting-to-web)
 		- [Style Language II](#style-language-ii)
-		- [Porting to Web I](#porting-to-web-i)
+		- [Porting to Web](#porting-to-web)
 		- [Other notes](#other-notes)
 	- [[Week 3] Continuous Map II, Style language I](#week-3-continuous-map-ii-style-language-i)
 		- [Continuous Map II](#continuous-map-ii)
@@ -33,7 +33,7 @@
 
 - [ ] Write blog post about general position
 - [ ] Plan out the new compiler design
-- Let Katherine know when the next language design meeting happens and she will notify Cyrus Omar
+- [ ] Let Katherine know when the next language design meeting happens and she will notify Cyrus Omar
 - [ ] OpenSet support
 - [ ] Label BBox seems to be a little off, but it is now functional
 - [ ] Fix the order of selection, or decide not to fix it at all
