@@ -31,6 +31,9 @@
 ---------
 # TODOs
 
+- [ ] Finish porting to the web
+- [ ] Write blog post about general position
+- [ ] Plan out the new compiler design
 - Let Katherine know when the next language design meeting happens and she will notify Cyrus Omar
 - [ ] OpenSet support
 - [ ] Label BBox seems to be a little off, but it is now functional
@@ -40,11 +43,81 @@
 ---------------------------------------------------
 # Weekly Notes
 
-## [Week 4] Style Language II, Porting to Web I
+## [Week 4] Style Language II, Porting to Web
 
 ### Style Language II
 
-### Porting to Web I
+- No concrete implementation is done this week, but various discussions
+- Advisor meeting: [notes](http://brickisland.net/diagrams/2017/06/22/notes-from-advisor-meeting-on-062117/), [two examples](http://brickisland.net/diagrams/2017/06/20/two-examples-of-the-new-style-language/)
+	- a couple important decisions:
+		- No more `constraint` block, objectives go to appropriate blocks
+		- "Substance constraints" are now just another kind of object (`Subset A B` = 2-tuple with the type `Subset`)
+		- Using general positions as the motivation, we might want to implement an `avoid` keyword, which tells the optimizer to stay away from certain region of the function: is this an objective, or a constraint?
+- My meeting with Josh on Friday:
+	- Agreed that Style language should be our next focus, and start implementing another domain will help develop the language
+	- An interesting discussion about the "types" of set:  
+		- In the continuous map example, the sets `R^n` and `R^m` are just normal sets, but Josh said we might want to treat them differently.
+		- Josh thinks a styling language should work on classes, rather than picking some individual elements
+		- remember that our current version of continuous map is a bunch of individual settings overwriting the global ones:
+		```
+		/*
+		* This is the same continuous map program, written in the new syntax.
+		*/
+		Set {
+			shape = Circle,
+			color = Random
+		}
+
+		Map {
+			shape = SolidArrow,
+			color = Black
+		}
+
+		R1 {
+			shape = Box,
+			color = Yellow
+		}
+
+		R2 {
+			shape = Box,
+			color = Red
+		}
+		```
+		- So here are a couple of possible solutions:
+			- Some intermediate step that create more substance classes: The names of sets often tell us some story. We as human math students know that `R`, `N`, `C` and so on are special sets. Can we use that on Penrose? Josh said we can just do regex matching before blocks
+				- Example:
+				```
+				[R^*] {
+					shape = square
+				}
+				```
+			- Grouping, or individual block for multiple elements:
+			 	- in css we can do:
+			 	```css
+				h1, body {
+					text-align: center;
+				}
+				```
+			- Or we can just declare another class in Substance.
+
+### Porting to Web
+
+![](assets/work-notes-ebdbb.png)
+- Reorganized the code into modules:
+	- `Compiler.hs` and `StyAst.hs`: the parsers for Substance and Style, respectively
+	- `Main.hs`: contains the main function
+	- `Server.hs`: a WebSockets server
+	- `Runtime.hs`: all the rest of the system
+- `Server.hs` and the web frontend talk to each other via JSON packages. The current JSON formats are:
+	- From server to frontend:
+		- `[Obj]`: encode all objects to be rendered
+	- From frontend to server:
+		- `Command { command :: String }`: a single command that can be `resample`, `step`, or `autostep`
+		- `DragEvent { name :: String, xm :: Float, ym :: Float }`: triggered when an object is dragged. Note that we are using the name of the object as the unique identifier. Should this be true?
+- Snap.svg: working perfectly well for now
+	- The Bboxes for labels are now perfect: ![](assets/work-notes-08c9c.png)
+	- We can obtain the BBoxes from Snap, before we optimize anything, over JSON
+
 
 ### Other notes
 
@@ -308,11 +381,20 @@ Subset T Q
 ---------------
 # Work log
 
+- [06/23/17]
+	- [x] Better CSS for the web gui!
+- [06/22/17]
+	- [x] implemented basically all functionalities of the web GUI
+	- [x] resample, autostep, step controlled by buttons
+- [06/21/17]
+	- [x] Porting to the Web: now renders the initial state and allows basic dragging and minimal reorganization of the code.
+- [06/20/17]
+	- [x] meetings with GC and Keenan
+	- [x] blog post on `tree.sty` and Keenan's complex number example
 - [06/19/17]
 	- [x] New parser achieved equivalent functionalities of the original one
 - [06/18/17]
 	- [x] Meeting with Katherine
-	- off mostly
 - [06/17/17]
     - [x] set up for megaparsec
     - [x] first version of Style parser for the block-based design
