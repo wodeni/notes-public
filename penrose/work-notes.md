@@ -4,6 +4,7 @@
 
 - [Penrose Work Notes](#penrose-work-notes)
 - [TODOs](#todos)
+- [Future Schedule](#future-schedule)
 - [Weekly Notes](#weekly-notes)
 	- [[Week 4] Style Language II, Porting to Web](#week-4-style-language-ii-porting-to-web)
 		- [Style Language II](#style-language-ii)
@@ -37,7 +38,23 @@
 - [ ] OpenSet support
 - [ ] Label BBox seems to be a little off, but it is now functional
 - [ ] Fix the order of selection, or decide not to fix it at all
+- [ ] algebraic types for commands
+- [ ] coming up with a new way to visualize the current Substance program
+- [ ] Read relevant literature: DSLDI 2015 Math paper
+- [ ] Paper outline for DSLDI
 
+---------
+
+# Future Schedule
+
+- week 5: design custom viz for set theory // tree diagram working
+- week 6: new style compiler? // learn topology
+- week 7: design sample topology sub/sty lang // write DSLDI outline // learn topology
+- week 8: impl topology
+- week 9: impl topology? // DSLDI draft done
+- week 10: REU poster session, finish DSLDI paper // document / wrap-up
+- REU ends aug 4th
+- DSLDI due aug 7th
 
 ---------------------------------------------------
 # Weekly Notes
