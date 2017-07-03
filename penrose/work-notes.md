@@ -6,6 +6,14 @@
 - [TODOs](#todos)
 - [Future Schedule](#future-schedule)
 - [Weekly Notes](#weekly-notes)
+	- [[Week 6] (Next domain?), Style Language IV](#week-6-next-domain-style-language-iv)
+		- [Style Language IV](#style-language-iv)
+		- [Others](#others)
+	- [[Week 5] Tree diagram, Style Language III](#week-5-tree-diagram-style-language-iii)
+		- [New Style language design](#new-style-language-design)
+		- [Grammar](#grammar)
+		- [Tree diagram](#tree-diagram)
+		- [Others](#others)
 	- [[Week 4] Style Language II, Porting to Web](#week-4-style-language-ii-porting-to-web)
 		- [Style Language II](#style-language-ii)
 		- [Porting to Web](#porting-to-web)
@@ -31,14 +39,16 @@
 
 ---------
 # TODOs
+- [ ] fix `repel` function
+- [ ] allow global selection
+- [ ] allow multiple selectors
+	- [ ] add in pairwise repel on all sets in `tree.sty`
+- [ ] Retrieve bboxes of labels from snap on start
+- [ ] Enable obj/constr functions with more than names as argument
+	- use `Numeric` for the rest of args
+- [ ] create sign distance functions and unify the interfaces
 
-- [ ] Write blog post about general position
-- [ ] Plan out the new compiler design
-- [ ] Let Katherine know when the next language design meeting happens and she will notify Cyrus Omar
 - [ ] OpenSet support
-- [ ] Label BBox seems to be a little off, but it is now functional
-- [ ] Fix the order of selection, or decide not to fix it at all
-- [ ] algebraic types for commands
 - [ ] coming up with a new way to visualize the current Substance program
 - [ ] Read relevant literature: DSLDI 2015 Math paper
 - [ ] Paper outline for DSLDI
@@ -58,6 +68,97 @@
 
 ---------------------------------------------------
 # Weekly Notes
+
+## [Week 6] (Next domain?), Style Language IV
+
+### Style Language IV
+
+### Others
+
+## [Week 5] Tree diagram, Style Language III
+
+### New Style language design
+
+Here is a summary of the new grammar:
+- A Style program is a collection of `Block`s
+- Each `Block` has a series of selectors, which are pattern matching against constructors declared in the Substance program. For example, `Subset A _ : x` matches to all supersets of `A`, and `x` is an identifier given to the superset of A, which can be used through out the block
+- The content of the block is a collection of `Stmt`s, which can be objective/constraint function calls, or assignment statement that assign some `Expr` to a key of `String` type.
+- The compiler would translate the Style program to an Ast, and the Runtime will walk through the Ast and generate:
+    - a set of objective functions
+    - a set of constraint functions
+    - a map that maps a Substance ID, to a data structure called `StySpec`, which is a giant record that contains all sorts things about a Substance object, and the Styling of it. The important components are:
+        - The type of Style object it corresponds to. For example, `Set` is `Circle` in Venn diagram Style
+        - A map that stores attributes related to the Style object. For example, the `start` and `end` of an arrow.
+
+- There are two ways to create calls to objective and constraint functions now:
+    - directly call them inside of blocks, with leading keywords `constraint` and `objective`
+    - called by the constructors of Style objects. For example, making an `Arrow` with `start = A` and `end = B` will implicitly call `centerMap(A, B`, which is an objective function that make sure the start and end of the arrow are close to `A` and `B`
+
+### Grammar
+
+```haskell
+data SubType = Set | Pt | Map | Intersect | NoIntersect | NoSubset | Subset | PointIn | PointNotIn | AllTypes deriving (Show, Eq)
+
+data StyObj = Circle | Box | Dot | Arrow | NoShape | Color | Text
+    deriving (Show)
+
+type StyObjInfo
+    = (StyObj, M.Map String Expr)
+
+data StySpec = StySpec {
+    spType :: SubType,
+    spId :: String,
+    spArgs :: [String],
+    spShape :: StyObjInfo,
+    spShpMap :: M.Map String StyObjInfo
+} deriving (Show)
+
+type StyProg = [Block]
+
+type Block = ([Selector], [Stmt])
+
+data Selector = Selector
+              { selTyp :: SubType
+              , selPatterns :: [Pattern]
+              , selIds :: [String] }
+              deriving (Show)
+data Pattern
+    = RawID String
+    | WildCard String
+    deriving (Show)
+
+data Stmt
+    = Assign String Expr
+    | ObjFn String [Expr]
+    | ConstrFn String [Expr]
+    | Avoid String [Expr]
+    -- | E Expr  -- TODO: is an expression a statement?
+    deriving (Show)
+
+data Expr
+    = IntLit Integer
+    | FloatLit Float
+    | Id String
+    | BinOp BinaryOp Expr Expr
+    | Cons StyObj [Stmt] -- Constructors for objects
+    deriving (Show)
+
+data BinaryOp = Access deriving (Show)
+
+data Color = RndColor | Colo
+          { r :: Float
+          , g :: Float
+          , b :: Float
+          , a :: Float }
+          deriving (Show)
+```
+
+### Tree diagram
+
+![170629-tree](https://user-images.githubusercontent.com/11740102/27758834-9ef46baa-5dec-11e7-8e30-941d5e3fa61b.gif)
+
+### Others
+
 
 ## [Week 4] Style Language II, Porting to Web
 
@@ -397,6 +498,20 @@ Subset T Q
 ---------------
 # Work log
 
+- [07/03/17]
+- [06/27/17] - [07/02/17]
+	- [x] new parser for the Style language
+	- [x] tree layout
+	- [x] arrow layout
+	- [x] refactored objective functions
+	- [x] wrote obj functions like `onTop`
+- [06/26/17]
+	- [x] (a little) Reading on Topology
+	- [x] fixed small server bugs
+- [06/25/17]
+	- [x] Reading on Optimization and Topology
+- [06/24/17]
+	- [x] Meeting with Katherine
 - [06/23/17]
 	- [x] Better CSS for the web gui!
 	- [x] Fixed dragging
