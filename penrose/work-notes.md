@@ -39,11 +39,15 @@
 
 ---------
 # TODOs
-- [ ] fix `repel` function
-- [ ] allow global selection
-- [ ] allow multiple selectors
-	- [ ] add in pairwise repel on all sets in `tree.sty`
-- [ ] Retrieve bboxes of labels from snap on start
+
+- Today:
+	- [x] fix the syntax for selector, delete underscores and add backticks
+	- [ ] fix `repel` function
+	- [ ] allow global selection
+	- [ ] allow multiple selectors
+		- [ ] add in pairwise repel on all sets in `tree.sty`
+	- [ ] Retrieve bboxes of labels from snap on start
+
 - [ ] Enable obj/constr functions with more than names as argument
 	- use `Numeric` for the rest of args
 - [ ] create sign distance functions and unify the interfaces
@@ -498,7 +502,9 @@ Subset T Q
 ---------------
 # Work log
 
+- [07/04/17]
 - [07/03/17]
+	- [x] Blog post on the new domain
 - [06/27/17] - [07/02/17]
 	- [x] new parser for the Style language
 	- [x] tree layout
