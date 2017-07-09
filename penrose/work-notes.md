@@ -41,16 +41,11 @@
 # TODOs
 
 - Today:
-	- [x] fix the syntax for selector, delete underscores and add backticks
-	- [ ] fix `repel` function
+	- [ ] allowing numerical arguments to obj/constr functions
+		- use `Numeric` for the rest of args
+	- [ ] signed distance function interface
 	- [ ] allow global selection
-	- [ ] allow multiple selectors
-		- [ ] add in pairwise repel on all sets in `tree.sty`
-	- [ ] Retrieve bboxes of labels from snap on start
-
-- [ ] Enable obj/constr functions with more than names as argument
-	- use `Numeric` for the rest of args
-- [ ] create sign distance functions and unify the interfaces
+	- [ ] sampling functions: `sample with` keyword
 
 - [ ] OpenSet support
 - [ ] coming up with a new way to visualize the current Substance program
@@ -61,21 +56,45 @@
 
 # Future Schedule
 
-- week 5: design custom viz for set theory // tree diagram working
-- week 6: new style compiler? // learn topology
-- week 7: design sample topology sub/sty lang // write DSLDI outline // learn topology
-- week 8: impl topology
-- week 9: impl topology? // DSLDI draft done
-- week 10: REU poster session, finish DSLDI paper // document / wrap-up
+- [x] week 5: design custom viz for set theory // tree diagram working
+- [x] week 6: new style compiler? // learn topology
+- [ ] week 7: design sample topology sub/sty lang // write DSLDI outline // learn topology
+- [ ] week 8: impl topology
+- [ ] week 9: impl topology? // DSLDI draft done
+- [ ] week 10: REU poster session, finish DSLDI paper // document / wrap-up
 - REU ends aug 4th
 - DSLDI due aug 7th
 
 ---------------------------------------------------
 # Weekly Notes
 
-## [Week 6] (Next domain?), Style Language IV
+## [Week 6] Discussion on the next Substance, Style Language IV,
+
+### Next Substance: \*jective function
+
+- See blog post for motivation
+- New components needed:
+	- Substance grammar and compiler
+
+### Optimization of layout
+
+* Allowed sizes to be `Varying`
+	- Problem: we only make sure the subset-superset size relationship hold when sampling init state, but when we have `Set A, B, C; Subset B A; Subset C A; NoIntersect B C`, we don't make sure `A` is big enough to hold its subsets
+	- Solution: Made the size a `Varying` parameter in the optimizer. To make sure the sets are visible, two constraints are imposed on every object on canvas: (1) min and max sizes; (2) visible within canvas
+* Worked on the continuous map and tree example to make sure they are working perfectly.
+	- Continuous map: ![](assets/170709-map.gif)
+	- tree: ![](assets/170709-tree.gif)
+	- venn: ![](assets/170709-venn.gif)
 
 ### Style Language IV
+
+- Deletion of `:` and `_`:
+	- Problem: the syntax `Subset _ A : x` may cause confusion for functional programmer because `_` usually means "don't care" and `A` usually means binding rather than matching
+	- Solution: following Jonathan's advice, used Scala’s stable identifier-like syntax. When an identifier like `x` appears in the selector, it is matching anything and initializing a new variable `x` as an alias to what gets matched.
+	- To refer to a concrete identifier declared in Substance, use backticks. For instance, `` Subset `A` x`` would match to all supersets of `A`
+- Global namespace:
+	- Problem: Suppose I want to add an objective function that operates on two objects unrelated in Substance, for example, `sameSize` for `R1` and `R2`, the current selection mechanism would not allow it.
+	- Solution: made all Substance ids accessible in a `global` block
 
 ### Others
 
@@ -502,7 +521,22 @@ Subset T Q
 ---------------
 # Work log
 
+- [07/07/17]
+	- [x] fixed a couple cases of NaN, everything now works
+	- [x] global namespace for all Substance ids and calibrated examples
+- [07/06/17]
+	- [x] Retrieve bboxes of objects from snap on start
+	- [x] Making size variable
+- [07/05/17]
+	- [x] Make Arrow label optional (Hacky way)
+	- [x] Simplified JSON decode
+	- [x] Factored shapes into another module
 - [07/04/17]
+	- [x] fix the syntax for selector, delete underscores and add backticks
+	- [x] fix `repel` function
+	- [x] allow multiple selectors
+		- [x] add in pairwise repel on all sets in `tree.sty`
+		- [x] add in pairwise repel on labels/sets in `venn.sty`
 - [07/03/17]
 	- [x] Blog post on the new domain
 - [06/27/17] - [07/02/17]
