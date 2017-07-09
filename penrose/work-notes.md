@@ -79,7 +79,9 @@
 	- Substance grammar and compiler
 	- New objective function that generates the Wikipedia images
 	- Alternative visualization of these definitions
-	-
+		- Jonathan mentioned [Commutative Diagram](https://en.wikipedia.org/wiki/Commutative_diagram), which he often draws
+		- Seems like bi/in/surjection are iso/epi/monomorphisms in category theory, not sure if we can use its diagramming convention. For example, the diagram for Monomorphism:
+		 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Monomorphism_scenarios.svg/340px-Monomorphism_scenarios.svg.png)
 
 ### Optimization of layout
 
