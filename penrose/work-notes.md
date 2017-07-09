@@ -80,8 +80,68 @@
 	- New objective function that generates the Wikipedia images
 	- Alternative visualization of these definitions
 		- Jonathan mentioned [Commutative Diagram](https://en.wikipedia.org/wiki/Commutative_diagram), which he often draws
-		- Seems like bi/in/surjection are iso/epi/monomorphisms in category theory, not sure if we can use its diagramming convention. For example, the diagram for Monomorphism:
+		- Seems like bi/in/surjection are iso/epi/monomorphisms in category theory, not sure if we can use its diagramming convention. For example, the diagram for [Monomorphism](https://en.wikipedia.org/wiki/Monomorphism):
 		 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Monomorphism_scenarios.svg/340px-Monomorphism_scenarios.svg.png)
+	- Style support for the new types. How should we pattern-match against, say, an injective function from set X to set Y?
+- Sample style and substance program
+	- Substance:
+	```
+	-- surjection.sub
+
+	Surjection {A B : Set} (f : A -> B) : Prop :=
+	forall (x x' : A), In x A /\ In x' A -> f x = f x' -> x = x'
+
+	Set X = { 1, 2, 3, 4 }
+	Set Y = { D, B, C }
+	Map f X Y
+
+	-- Applying the definition on concrete mathematical objects
+	Surjection X Y f
+	```
+	- This application of `Surjection` on set `X` and `Y` can be translated either directly into some Style file, or into some intermediate representation. I am not sure what this representation be.
+	- Style: This is just a draft, but paste it to start the discussion
+	```
+	-- surjection.sty
+	Map `f` `X` `Y` {
+		-- FIXME: I don't have a good idea to refer to `Surjection`, now we are
+		-- just drawing arrows for all 2-tuple from `X` and `Y`
+		-- TODO: how do we write the selector properly?
+		Point a in `X`.elements, Point b in `Y` elements {
+			shape = Arrow {
+				start = a
+				end   = b
+				label = None
+			}
+		}
+	}
+
+	-- Style for sets and points
+	Set x {
+		shape = Ellipse {
+			direction = vertical
+		}
+		objective onTop(x.label, x)
+	}
+	Point p {
+		shape = Text { }
+	}
+
+	-- For the layouts, here I am assuming `Set X = { 1, 2, 3, 4 }` is
+	-- generating a bunch of `Point` declarations and `PointIn`
+	-- constraints
+	PointIn p s {
+		objective center(p, s)
+	}
+	PointIn p `X`, PointIn q `X` {
+		objective sameX(p, q)
+	}
+	PointIn p `Y`, PointIn q `Y` {
+		objective sameX(p, q)
+	}
+	PointIn p `X`, PointIn q `Y` {
+		objective sameHeight(p, q)
+	}
+	```
 
 ### Optimization of layout
 
