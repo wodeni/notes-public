@@ -6,7 +6,9 @@
 - [TODOs](#todos)
 - [Future Schedule](#future-schedule)
 - [Weekly Notes](#weekly-notes)
-	- [[Week 6] (Next domain?), Style Language IV](#week-6-next-domain-style-language-iv)
+	- [[Week 6] Discussion on the next Substance, Style Language IV, Layout](#week-6-discussion-on-the-next-substance-style-language-iv-layout)
+		- [Next Substance: \*jective function](#next-substance-jective-function)
+		- [Optimization of layout](#optimization-of-layout)
 		- [Style Language IV](#style-language-iv)
 		- [Others](#others)
 	- [[Week 5] Tree diagram, Style Language III](#week-5-tree-diagram-style-language-iii)
@@ -68,13 +70,16 @@
 ---------------------------------------------------
 # Weekly Notes
 
-## [Week 6] Discussion on the next Substance, Style Language IV,
+## [Week 6] Discussion on the next Substance, Style Language IV, Layout
 
 ### Next Substance: \*jective function
 
 - See blog post for motivation
 - New components needed:
 	- Substance grammar and compiler
+	- New objective function that generates the Wikipedia images
+	- Alternative visualization of these definitions
+	-
 
 ### Optimization of layout
 
@@ -83,8 +88,9 @@
 	- Solution: Made the size a `Varying` parameter in the optimizer. To make sure the sets are visible, two constraints are imposed on every object on canvas: (1) min and max sizes; (2) visible within canvas
 * Worked on the continuous map and tree example to make sure they are working perfectly.
 	- Continuous map: ![](assets/170709-map.gif)
-	- tree: ![](assets/170709-tree.gif)
-	- venn: ![](assets/170709-venn.gif)
+	- tree version of the subset example: ![](assets/170709-tree.gif)
+	- venn version of the subset example: ![](assets/170709-venn.gif)
+	- (Proposed by Josh) Multi-layer subsets: ![](assets/170709-layers.gif)
 
 ### Style Language IV
 
