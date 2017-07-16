@@ -6,6 +6,8 @@
 - [TODOs](#todos)
 - [Future Schedule](#future-schedule)
 - [Weekly Notes](#weekly-notes)
+	- [[Week 7] Substance for \*jection, Style Language V: Style inheritance](#week-7-substance-for-jection-style-language-v-style-inheritance)
+		- [New Substance](#new-substance)
 	- [[Week 6] Discussion on the next Substance, Style Language IV, Layout](#week-6-discussion-on-the-next-substance-style-language-iv-layout)
 		- [Next Substance: \*jective function](#next-substance-jective-function)
 		- [Optimization of layout](#optimization-of-layout)
@@ -44,11 +46,9 @@
 
 - Today:
 	- [ ] allowing numerical arguments to obj/constr functions
-		- use `Numeric` for the rest of args
-	- [ ] signed distance function interface
-	- [ ] allow global selection
-	- [ ] sampling functions: `sample with` keyword
-
+	- [ ] Parser for the simple Substance of functions
+		- [ ] rewrite Katherine's parser!
+- [ ] signed distance function interface
 - [ ] OpenSet support
 - [ ] coming up with a new way to visualize the current Substance program
 - [ ] Read relevant literature: DSLDI 2015 Math paper
@@ -60,8 +60,8 @@
 
 - [x] week 5: design custom viz for set theory // tree diagram working
 - [x] week 6: new style compiler? // learn topology
-- [ ] week 7: design sample topology sub/sty lang // write DSLDI outline // learn topology
-- [ ] week 8: impl topology
+- [x] week 7: design sample topology sub/sty lang // learn topology
+- [ ] week 8: impl new viz // impl Alloy support // write DSLDI outline
 - [ ] week 9: impl topology? // DSLDI draft done
 - [ ] week 10: REU poster session, finish DSLDI paper // document / wrap-up
 - REU ends aug 4th
@@ -69,6 +69,26 @@
 
 ---------------------------------------------------
 # Weekly Notes
+
+## [Week 7] Substance for \*jection, Style Language V: Style inheritance
+
+### New Substance
+
+- Examples of FOL definitions:
+	- “forall x in X, exists y in Y : f(x) = y” --- just by the definition of function
+	- “forall x in X, f(x) = 5”
+	- “exists x in X, forall y in Y, f^{-1}(y) = x” (ok, this is not a function, but it is a relation)
+	- this works if we start with the forall y, and deal with the exists, fixing one sampled x instead of sampling a new one for each y
+	- is there some way to convert these statements into a “forall x, y” “normal” form?
+	- “forall y, y’ in Y, f^{-1}(y) = f^{-1}(y’)” (same as above statement)
+	- “forall y, y’ in Y, f^{-1}(y) = f^{-1}(y’) -> ??”
+	- “forall x, x’ in X, exists y in Y : y = f(x) /\ y = f(x’)” (equiv to f(x)=f(x’))
+	- ““forall x, x’ in X, exists y in Y : y = f(x) \/ y = f(x’)” (i don’t even know what this is supposed to be)
+	- “forall x in X, exists x’ in X : f(x) = f(x’) ”
+	- this is trivially true unless you specify:
+	- “forall x in X, exists x’ in X : x != x’ /\ f(x) = f(x’) ”
+
+
 
 ## [Week 6] Discussion on the next Substance, Style Language IV, Layout
 
@@ -589,6 +609,23 @@ Subset T Q
 ---------------
 # Work log
 
+- [07/13/17]
+	- [x] allow global selection
+	- [x] made the function viz better!
+- [07/12/17] - [07/14/17]
+	- [x] Wiki-style viz for functions
+	- [x] ellipse support
+		- [x] containment detection for ellipse (only points in ellipse)
+	- [x] Blog post on Alloy and function composition with alloy
+	- [x] New font: Palentino. italic
+- [07/11/17]
+	- [x] continued reading on FOL, SOL, and inference algo
+	- [x] found alloy and did a most basic example
+	- [x] started adding numerical args into functions
+- [07/10/17]
+	- [x] initial research on FOL
+- [07/08/17] - [07/09/17]
+	- no record
 - [07/07/17]
 	- [x] fixed a couple cases of NaN, everything now works
 	- [x] global namespace for all Substance ids and calibrated examples
