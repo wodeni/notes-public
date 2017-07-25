@@ -45,12 +45,12 @@
 # TODOs
 
 - Today:
+	- [x] a grammar for FOL
+	- [ ] application of definitions
+	- [ ] translator from alloy output to Substance
 	- [ ] allowing numerical arguments to obj/constr functions
-	- [ ] Parser for the simple Substance of functions
-		- [ ] rewrite Katherine's parser!
 - [ ] signed distance function interface
 - [ ] OpenSet support
-- [ ] coming up with a new way to visualize the current Substance program
 - [ ] Read relevant literature: DSLDI 2015 Math paper
 - [ ] Paper outline for DSLDI
 
@@ -70,7 +70,17 @@
 ---------------------------------------------------
 # Weekly Notes
 
-## [Week 7] Substance for \*jection, Style Language V: Style inheritance
+## [Week 9] New viz for maps: Cartesian Coordinate System
+
+### Improvement to Style language
+### Sample Style and Substance program for the new viz
+
+
+## [Week 8] Substance for \*jection, Alloy support
+
+- See PR [here](https://github.com/penrose/penrose/pull/6)
+
+## [Week 7] Substance for \*jection
 
 ### New Substance
 
@@ -609,6 +619,13 @@ Subset T Q
 ---------------
 # Work log
 
+- [07/19/17]
+	- [x] Substance to Alloy translator
+	- [x] Alloy Pretty-printer
+- [07/14/17] - [07/18/17]
+	- [x] First working version of the new Substance compiler
+	- [x] Substance semantic checker
+	- [x] Clean up for some Style functions
 - [07/13/17]
 	- [x] allow global selection
 	- [x] made the function viz better!
