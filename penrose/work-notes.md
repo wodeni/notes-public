@@ -619,6 +619,19 @@ Subset T Q
 ---------------
 # Work log
 
+- [07/25/17]
+	- [x] infix function calls
+	
+- [07/24/17]
+	- [x] (finally) tested on numerical argument, worked for `OnTop`
+	- [x] Smarter cartesian product. Allows `In p S, In q S` to select points in the same set
+	- [x] Labels for functions in the composition example
+	- [x] Bug fix: check for duplicates before sending to Alloy, and make sure only when applying definition Alloy will be executed
+	- [x] GC Slides
+- [07/20/17] - [07/23/17]
+	- [x] Alloy to Substance parser
+	- [x] abstract style
+	- [x] Composition example
 - [07/19/17]
 	- [x] Substance to Alloy translator
 	- [x] Alloy Pretty-printer
@@ -647,7 +660,7 @@ Subset T Q
 	- [x] fixed a couple cases of NaN, everything now works
 	- [x] global namespace for all Substance ids and calibrated examples
 - [07/06/17]
-	- [x] Retrieve bboxes of objects from snap on start
+	- [x] Retrieve bboxes of labels from snap on start
 	- [x] Making size variable
 - [07/05/17]
 	- [x] Make Arrow label optional (Hacky way)
