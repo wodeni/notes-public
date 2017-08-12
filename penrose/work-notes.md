@@ -619,9 +619,14 @@ Subset T Q
 ---------------
 # Work log
 
+- [08/03/17]
+	- 
+- [07/25/17] - [08/02/17]
+	- REUSE poster
+	- DSLDI paper draft
+	- initial clean up of code base
 - [07/25/17]
 	- [x] infix function calls
-	
 - [07/24/17]
 	- [x] (finally) tested on numerical argument, worked for `OnTop`
 	- [x] Smarter cartesian product. Allows `In p S, In q S` to select points in the same set
