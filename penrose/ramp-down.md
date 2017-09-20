@@ -2,6 +2,25 @@
 
 This document records the status of Penrose after Nimo's REU program in summer 2017, and provides some ideas about what to do next.
 
+<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+
+- [Penrose Summer 2017 Ramp-down document](#penrose-summer-2017-ramp-down-document)
+	- [Overview](#overview)
+	- [Dependencies](#dependencies)
+	- [Building the project](#building-the-project)
+	- [Running the project](#running-the-project)
+	- [Documentation](#documentation)
+	- [Structure of the project](#structure-of-the-project)
+	- [Language Spec](#language-spec)
+		- [Substance](#substance)
+		- [Style](#style)
+	- [The cartesian coordinate viz: early attempts](#the-cartesian-coordinate-viz-early-attempts)
+	- [Composing Functions](#composing-functions)
+	- [Known problems](#known-problems)
+	- [Next semester...](#next-semester)
+
+<!-- /TOC -->
+
 ## Overview
 
 - We will refer to the project root directory as "TOP" in this document
