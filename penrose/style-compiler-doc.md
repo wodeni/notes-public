@@ -11,6 +11,10 @@ We use a parser combinator library, [Megaparsec](https://hackage.haskell.org/pac
 [Parsing a simple imperative language ](https://markkarpov.com/megaparsec/parsing-simple-imperative-language.html)
 [Beginner's guide to Megaparsec](http://akashagrawal.me/beginners-guide-to-megaparsec/)
 
+Megaparsec is a [__parser combinator__](https://en.wikipedia.org/wiki/Parser_combinator), which is another popular type of parser other than parser generators (`yacc` is an example of a parser generator). A couple special things about parser combinators:
+
+- By default, there is no explicit lexing stage in the compiler. Instead, lexical analysis is done during the parsing phase. (Megaparsec claims to support output from `alex`, a lexer library in Haskell, but we never tested it)
+- You essentially write small parser functions and "glue" them together in a bigger function. In Haskell, you connect these little parser functions by [__applicatives__](https://hackage.haskell.org/package/base-4.10.1.0/docs/Control-Applicative.html). (I'm not going to all the Haskell details here)
 
 ## Design Rationale
 
@@ -212,7 +216,7 @@ All of the parser code is included in three modules:
 - We have two kinds of space consumer:
     - the function `scn :: Parser ()` will consume all white space characters, __including__ newlines
     - the function `sc :: Parser ()` only consume __tabs (`\t`) and space characters (`\ `)__
-- A function `newline' :: Parser ()` is therefore defined to be called after parser a complete statement. It first consumes the newline immediately after the statement, and then call `scn` to remove all other white space characters.
+- A function `newline' :: Parser ()` is therefore defined to be called after parsing a complete statement. It first consumes the newline immediately after the statement, and then calls `scn` to remove all other white space characters.
 
 ## Examples
 
