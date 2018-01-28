@@ -2,6 +2,8 @@
 
 ## Introduction
 
+:sparkles:Welcome:sparkles:
+
 As you might already know, the Penrose system has two _extensible_ DSLs. Therefore, in our implementation, we have two parsers for Substance and Style.
 
 We use a parser combinator library, [Megaparsec](https://hackage.haskell.org/package/megaparsec), to build the parsers. This library builds on top of the [Parsec](https://hackage.haskell.org/package/parsec) library. For starters, you can follow the blog posts on Megaparsec:
@@ -23,7 +25,7 @@ We use a parser combinator library, [Megaparsec](https://hackage.haskell.org/pac
 - Identifiers must start with a letter ([A-Za-z]) and followed by alphanumeric characters.
 - Names that start with an underscore character (`_`) is reserved by the compiler
     - For now, the use of these name is for a Substance object that does not have an explicit name. For example, `Subset A B` mathematically describes a relation between two `Set`, but is treated as an "object" (TODO: using the term loosely. Katherine refer to them as "constraints" in earlier documents) in the system, i.e. you can associate shapes with this object - as shown in `TOP/src/sty/tree.sty`.
-    - In this case, the system internally creates an identifier for a constraint (see `getConstrTuples` in `Style.hs` for implementation), which essentially concatenates the statement string and adds an `_` before the string. (`Subset A B` -> `_SubsetAB`)
+    - In this case, the system internally creates an identifier for a constraint (see `getConstrTuples` in `Style.hs` for implementation), which essentially concatenates the statement string and adds an `_` before the string. (`Subset A B` :arrow_right: `_SubsetAB`)
         - TODO: Probably not the best implementation, any more principled way?
 
 ### Keywords and Reserved words
@@ -55,6 +57,7 @@ We use a parser combinator library, [Megaparsec](https://hackage.haskell.org/pac
         - TODO: this implementation does not scale. Therefore, we are working on a more generalized version.
     - Optimization/Computation
         - Depends on the state of the style and computation dictionaries. All entries in these dictionaries are reserved words.
+            - See `Computation.hs` and `Functions.hs` for the dictionary entries
 
 ### Pattern matching
 
@@ -62,7 +65,8 @@ We use a parser combinator library, [Megaparsec](https://hackage.haskell.org/pac
 - A selector can either be `global` or typed
     - Global selector: `global`
         - Matches with all Substance identifiers
-        - TODO: __why do we have this thing?__
+        - This is primarily for testing purposes. It gives exactly one selection. You can declare some "global objectives" and be sure that only one copy of it will be in the system.
+        - To elaborate, you technically have access to all Substance identifiers everywhere, but if you do `Set X { objective A onTop B }`, there could be multiple copies of `onTop` because you might match multiple `Set`s.
     - Typed selector is a type signature followed by a list of arguments (called `Pattern` in the AST)
         - Two patterns of matching exist: __quoted matching__ and __binding matching__. The __composition__ of them is also allowed
         - __Quoted matching__: `` Set `A` ``
@@ -107,9 +111,24 @@ We use a parser combinator library, [Megaparsec](https://hackage.haskell.org/pac
             - The above matching can be mixed together.
             - Mixing binding matching with quoted matching within a selector
                 - Example: `` Subset A `B` `` selects all subsets of `` Set `B` ``
-- What does it mean to have multiple selectors?
-    - A Cartesian product among selectors
+            - Example: __FIXME__ does not work properly yet
+            ```
+            Subset x `D` {
+                x.color = computeColorRGBA(0.1, 1.0, 0.2, 0.4) -- green
+                constraint contains(y, x)
+                constraint smallerThan(x, y)
+                constraint outsideOf(y.label, x)
+            }
 
+            Set x {
+                shape = Circle { }
+                constraint contains(x, x.label)
+            }
+            ```
+
+- What does it mean to have multiple selectors?
+    - A Cartesian product among selectors: see `TOP/src/sty/tree.sty` for an example
+    - TODO: explanation for why the tree representation works
 
 ### Dot access
 
@@ -123,12 +142,60 @@ We use a parser combinator library, [Megaparsec](https://hackage.haskell.org/pac
         end   = B.center
     }
     ```
+- TODO: complete this part
 
 ### Scoping rules of Style program
 
-- 
+- All of the Substance identifiers are visible throughout the Style program
+- Undefined behaviors happen if you bind an existing identifier to selected object.
+    - For example, if you have the following Substance program `Set A, B, C, D`. If you were to select all sets in Style, please do not write `Set A { }`, but use a new identifier, say `Set X`.
+    - In practice, the new name you bind to (which collides with a Substance id) will simply hide the Substance identifier. Let's demonstrate this by an (obscure) example:
+    ```
+    -- Substance
+    Set A, B
 
-## The Parser
+    --- Style
+    Set x {
+        shape = Circle { }
+        constraint contains(x, x.label)
+    }
+
+    Set X {
+        arr = Arrow {
+            start = A.shape
+            end   = B.shape
+        }
+    }
+    ```
+
+    <center>
+    <img src="assets/style-compiler-doc-4c583.png" width=400px>
+    </center>
+
+    - Here, we declare an arrow that goes from set A to set B for every single set, which actually results in exactly two same arrows since we have two sets. Disable autostep and drag the arrow you will see:
+
+    <center>
+    <img src="assets/style-compiler-doc-d4a73.png" width=400px>
+    </center>
+
+    - Now, if we replace `Set X` by `Set A` in the Style program:
+    ```
+    --- Same Substance, different selector in the last block of Style
+    Set A {
+        arr = Arrow {
+            start = A.shape
+            end   = B.shape
+        }
+    }
+    ```
+
+    <center>
+    <img src="assets/style-compiler-doc-77425.png" width=400px>
+    </center>
+
+    - What's up with the triangle? It's just a very short arrow! Essentially, `A` is an alias for whatever that gets selected now, __NOT the Substance id__. Therefore, this block says "give me an arrow from myself to a set called `B`". In `B`'s case, the arrow points from itself to itself, hence the tiny arrow! Note that no more duplicated arrow in this case.
+
+## Parsing
 
 All of the parser code is included in three modules:
 - `Substance.hs`: Substance's AST, parser, semantic checker
