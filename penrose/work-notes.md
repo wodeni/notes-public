@@ -7,25 +7,23 @@ This document contains Nimo's progress reports of Penrose project in Fall 2017 s
 ## TODOs
 
 - Today:
-    - [ ] Documentation for the parser
-        - [x] Substance
-        - [ ] Style
-    - [ ] a clear language spec - design doc. More examples of correct/incorrect programs
-    - [ ] Migrate all my documentation to a Penrose wiki
-    - [ ] Less important: server documentation
-    - [ ] Document big TODOs in the code base
-        - [ ] NaNs for `layers.sub`
-    - [ ] links to tutorials and blogs
+    - [ ] Line segments
+    - [ ] Dotted line
+    - [ ] Cubic Bezier
+    - [ ] Square for right angle
+    - [ ] Being able to shade region
+    - [ ] Debug
 - DSLDI
     - [ ] Use the proposals from Katherine and profs as resources for motivation  
     - [ ] other DSLs: TikZ and DSL is TikZ, graphviz, asymtote, tikz gallary
 - Others
+    - [ ] a clear language spec - design doc. More examples of correct/incorrect programs
+    - [ ] Migrate all my documentation to a Penrose wiki
     - [ ] read this http://brickisland.net/diagrams/2016/11/02/related-work-graph-drawing-in-tikz/
     - [ ] ask anybody who works in MoMath
 
 ## Weekly Notes
 
-### Week 1-3: Documentation and Commutative Viz
 
 ----
 ## DSLDI
@@ -34,6 +32,7 @@ This document contains Nimo's progress reports of Penrose project in Fall 2017 s
 
 ## Work Log
 
+- [171006]
 - [170920]
     - [x] Document function synthesis, comparing with the old version from Kathrine
     - [x] document the cartesian thing
