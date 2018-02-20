@@ -131,8 +131,83 @@ Megaparsec is a [__parser combinator__](https://en.wikipedia.org/wiki/Parser_com
             ```
 
 - What does it mean to have multiple selectors?
-    - A Cartesian product among selectors: see `TOP/src/sty/tree.sty` for an example
-    - TODO: explanation for why the tree representation works
+    - A Cartesian product among selected objects will be computed, and the combinations that produce inconsistent mappings will be discarded
+    - Consider the following program
+    ```
+    -- Substance
+    Set A, B, C, D
+    -- A, B and C are both subsets of D
+    Subset A D
+    Subset B D
+    Subset C D
+    -- Style
+    Subset x S, Subset y S {
+        objective repel(x, y)
+    }
+    ```
+    - Each of `Subset x S` and `Subset y S` matches all `Subset` objects in Substance. The Cartesian product (3 * 3 = 9 combinations) will be:
+        - `Subset A D, Subset A D`
+        - `Subset B D, Subset B D`
+        - `Subset C D, Subset C D`
+        - `Subset A D, Subset B D`
+        - `Subset B D, Subset A D`
+        - `Subset A D, Subset C D`
+        - `Subset C D, Subset A D`
+        - `Subset B D, Subset C D`
+        - `Subset C D, Subset B D`
+    - We then filter the Cartesian product to remove any __inconsistent__ pairs. By inconsistent, we specifically mean that there should not be two aliases binding to the same Substance id. For example, `Subset A D, Subset A D` binds `x` and `y` to `A`, which is not allowed. (see `isOneToOne` under `procBlock` in `TOP/src/Style.hs` for source code).
+    - After filtering, the following matched pairs remain:
+        - `Subset A D, Subset B D`
+        - `Subset B D, Subset A D`
+        - `Subset A D, Subset C D`
+        - `Subset C D, Subset A D`
+        - `Subset B D, Subset C D`
+        - `Subset C D, Subset B D`
+    - The following objective functions are generated:
+        - `repel(A, B)`
+        - `repel(B, A)`
+        - `repel(A, C)`
+        - `repel(C, A)`
+        - `repel(B, C)`
+        - `repel(C, B)`
+    - A live example: `TOP/src/sty/tree.sty`
+    ```
+    -- tree.sub
+    Set A, B, C, D, E, F, G
+    Subset B A
+    Subset C A
+    Subset D B
+    Subset E B
+    Subset F C
+    Subset G C
+    NoIntersect E D
+    NoIntersect F G
+    NoIntersect B C
+    -- tree.sty
+    Set x {
+        shape = Text { text = None }
+    }
+
+    Subset x y {
+        objective above(y, x)
+        objective sameX(x, y)
+        shape =  Arrow {
+            start = x.shape
+            end   = y.shape
+            text  = None
+        }
+    }
+    -- each set repel others to spread out the tree
+    Set x, Set y {
+        objective repel(x, y)
+    }
+    -- nodes (sets) on the same depth in the tree have the same y values
+    Subset x S, Subset y S {
+        objective sameHeight(x, y)
+    }
+    ```
+    - `Subset x S, Subset y S { ... }` generates objectives that force nodes on the same level in a tree to stay on the same height
+    - `Set x, Set y { ... }` imposes objectives that make each node repel all other nodes, therefore "stretching" the tree.
 
 ### Dot access
 
