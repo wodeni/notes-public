@@ -47,5 +47,5 @@ Nimo wrote [Style compiler documentation](https://github.com/wodeni/notes-public
 
 1. [Designing extensible, domain-specific languages for mathematical diagrams](http://www.cs.cmu.edu/~kqy/resources/Penrose_OBT.pdf)
 Katherine Ye, Keenan Crane, Jonathan Aldrich, and Joshua Sunshine. In Off the Beaten Track ’17 (co-located with POPL).
-2. [Substance and Style: domain-specific languages for mathematical diagrams](javascript:void(0))
+2. [Substance and Style: domain-specific languages for mathematical diagrams](http://wodenimoni.com/assets/dsldi.pdf)
 Wode Ni*, Katherine Ye*, Joshua Sunshine, Jonathan Aldrich, and Keenan Crane. In DSLDI '17 (co-located with SPLASH).
