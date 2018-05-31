@@ -1,38 +1,39 @@
-# Penrose Work Notes - Fall 2017
+# Penrose Work Notes - Summer 2018
 
-This document contains Nimo's progress reports of Penrose project in Fall 2017 semester.
+This document contains Nimo's progress reports of Penrose project in Summer 2018.
 
 ## TOC
 
 ## TODOs
 
+- Pending:
+    - [ ] label language design
+    - [ ] Dynamic parsing: read https://docs.google.com/document/d/1DPpAvBKGnr96MyohJAj2M40zrppjPV7sbd25Nz-qfkg/edit
+    - [ ] organize JS file
+    - [ ] Deprecate gloss
+    - [ ] Latex labeling support
 - Today:
-    - [ ] Line segments
-    - [ ] Dotted line
-    - [ ] Cubic Bezier
-    - [ ] Square for right angle
-    - [ ] Being able to shade region
-    - [ ] Debug
-- DSLDI
-    - [ ] Use the proposals from Katherine and profs as resources for motivation  
-    - [ ] other DSLs: TikZ and DSL is TikZ, graphviz, asymtote, tikz gallary
-- Others
-    - [ ] a clear language spec - design doc. More examples of correct/incorrect programs
-    - [ ] Migrate all my documentation to a Penrose wiki
-    - [ ] read this http://brickisland.net/diagrams/2016/11/02/related-work-graph-drawing-in-tikz/
-    - [ ] ask anybody who works in MoMath
+    - [ ] Reply to the project idea email
+    - [ ] Read and comment on RA spec
+    - [ ] Read up on Dor's DSLL + Core Substance work
+    - [ ] Read Issue #75
+    - [ ] Set up Travis CI
+    - [ ] Open GitHub issue about structural editor
 
 ## Weekly Notes
 
+### Week 1: Ramp-up and RA domain
 
-----
-## DSLDI
+- Resources
+    - RA spec: https://docs.google.com/document/d/1I1KlD4fHZoOUYxg9PFmhTpLe_LoIob30ArWW7KfMORw/edit
+- Questions about DSLL + Core lang:
+    - What is `Map2`? How is it different from `Map`??
 
-- 25 mins talk, 5 mins questions
+---
 
 ## Work Log
 
-- [171006]
-- [170920]
-    - [x] Document function synthesis, comparing with the old version from Kathrine
-    - [x] document the cartesian thing
+- [180531]
+- [180530]
+    - [x] Fix firefox issue
+    - [x] Meetings: GC, Jonathan, Katherine
