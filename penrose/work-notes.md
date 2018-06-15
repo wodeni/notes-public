@@ -10,7 +10,7 @@ This document contains Nimo's progress reports of Penrose project in Summer 2018
 	- [TOC](#toc)
 	- [TODOs](#todos)
 	- [Weekly Notes](#weekly-notes)
-		- [Week 1: Ramp-up and RA domain](#week-1-ramp-up-and-ra-domain)
+		- [Week 0 + 1: Ramp-up and RA domain](#week-0-1-ramp-up-and-ra-domain)
 	- [Work Log](#work-log)
 
 <!-- /TOC -->
@@ -18,31 +18,51 @@ This document contains Nimo's progress reports of Penrose project in Summer 2018
 ## TODOs
 
 - Pending:
-    - [ ] label language design
     - [ ] Dynamic parsing: read https://docs.google.com/document/d/1DPpAvBKGnr96MyohJAj2M40zrppjPV7sbd25Nz-qfkg/edit
-    - [ ] organize JS file
-    - [ ] Deprecate gloss
-- [180605]:
     - [ ] Open GitHub issue about structural editor
-    - [ ] Catch Keenan and schedule the meeting with him
-    - [ ] Latex labeling support
-    - [ ] Plan on deprecating gloss
-    - [ ] Read RA spec
+	- [ ] Get a minimum example of RA working
+- [180614]
+	- [ ] organize JS file
+	- [ ] Latex labeling support
+	- [ ] Implement `AutoLabel`
+	- [ ] Implement `Nolabel`
+	- [ ] Implement `Label`
 
 ## Weekly Notes
 
-### Week 1: Ramp-up and RA domain
+### Week 0 + 2: Ramp-up, Code refactoring
 
+- Ramp-up: https://github.com/penrose/penrose/milestone/3
+- Refactoring:
 - Resources
     - RA spec: https://docs.google.com/document/d/1I1KlD4fHZoOUYxg9PFmhTpLe_LoIob30ArWW7KfMORw/edit
 - Questions about DSLL + Core lang:
     - What is `Map2`? How is it different from `Map`?
     - Any particular reason that `emptyArgList` requires parens?
-
----
+- Refactoring `procExpr` and implementing property access in a systematic way
+	- No shortcut to shapes using just the Substance identifier in `procExpr`
+	- What does nested computation mean?
+	- resolveObjs
+	- `resolveObjs` has the synonym logic
 
 ## Work Log
 
+- [180608] - [180613]
+	- [x] Multiple meetings: Josh, Advisors, PL
+	- [x] fix test cases
+	- [x] figure out how to run Haddock with `stack` and write wiki page for documenting code
+	- [x] clean up repo
+    - [x] label language design
+    - [x] Deprecate gloss
+	- [x] Implement property access
+- [180607]
+	- [x] Meeting: advisors, Katherine on refactoring
+- [180606]
+	- [x] Realized problems with property access and started working on that
+	- [x] Jonathan Group lunch
+- [180605]:
+    - [x] Meeting: students, PL
+    - [x] Catch Keenan and schedule the meeting with him
 - [180604]
     - [x] Sync with Dor about progress in DSLL and fix empty paren issues together
     - [x] SSSG: Mary Shaw
