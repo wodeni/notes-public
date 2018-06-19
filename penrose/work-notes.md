@@ -21,13 +21,13 @@ This document contains Nimo's progress reports of Penrose project in Summer 2018
     - [ ] Dynamic parsing: read https://docs.google.com/document/d/1DPpAvBKGnr96MyohJAj2M40zrppjPV7sbd25Nz-qfkg/edit
     - [ ] Open GitHub issue about structural editor
 	- [ ] Get a minimum example of RA working
-- [180614]
-	- [ ] organize JS file
-	- [ ] Latex labeling support
-	- [ ] Implement `AutoLabel`
-	- [ ] Implement `Nolabel`
-	- [ ] Implement `Label`
-
+- [180619]
+	- [ ] Implement `Label` in type checker and Style
+	- [ ] Implement `AutoLabel` in type checker and Style
+	- [ ] Implement `Nolabel` in type checker and Style
+	- [ ] make RA diagrams
+	- [ ] RA textbook review and post to `language-design`
+	
 ## Weekly Notes
 
 ### Week 0 + 2: Ramp-up, Code refactoring
@@ -47,6 +47,18 @@ This document contains Nimo's progress reports of Penrose project in Summer 2018
 
 ## Work Log
 
+- [180618]
+	- [x] Latex labeling support in front-end
+	- [x] Implement `Label` in Substance parser
+	- [x] Implement `AutoLabel` in Substance parser
+	- [x] Implement `Nolabel` in Substance parser
+- [180616 - 180617]
+	- weekend
+- [180615]
+	- [x] organize JS file
+- [180614]
+	- [x] address Katherine's comments
+	- [x] investigated how exactly property access behaves with different ordering of Substance and/or Style programs
 - [180608] - [180613]
 	- [x] Multiple meetings: Josh, Advisors, PL
 	- [x] fix test cases
