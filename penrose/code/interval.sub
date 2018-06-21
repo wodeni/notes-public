@@ -1,0 +1,28 @@
+Reals D, C
+Point a, b, d, e, i, j, k, inf ∈ D
+Interval A = [a, b] ⊆ D
+Interval J = [d, e) ⊆ D
+Interval I = (i, j) ⊆ D
+Interval K = (k, inf) ⊆ D
+b < k
+
+Function f : A → C
+Differentiable(f) -- or DiffFunction f
+
+Interval U ⊆ D = J ∪ I
+Function h : U → C
+Discontinuous(h)
+
+Point l ∈ A
+Point fl ∈ C = f(l)
+Point2D p2 ∈ A * C = Pt2(l, fl)
+
+Point dfl = f’(l)
+Point ih = ∫[J](h)
+
+-- you can say “dfl ∈ A” or “dfl ∈ C”
+-- no plausible “∈” for ih
+
+Autolabel D C a b d e i j k f h l
+NoLabel A J I K U dfl ih
+Label fl “f(l)”

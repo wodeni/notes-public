@@ -1,0 +1,113 @@
+global {
+    origin = CANVAS.origin
+    right  = CANVAS.y
+    top    = CANVAS.top
+}
+
+----------------------------------------------------------------------
+-- Arrows
+
+Reals `D` {
+    D.shape = DoubleArrow {
+        start = global.origin - (100, 100)
+        end   = global.right
+        style = "solid"
+        text  = Auto
+    }
+    encourage near(D.text, D.shape.end)
+}
+
+Reals `C` {
+    C.shape = DoubleArrow {
+        start = global.origin - (100, -100)
+        end   = global.right
+        style = "solid"
+        text  = Auto
+    }
+    encourage near(D.text, D.shape.end)
+}
+
+----------------------------------------------------------------------
+-- Brackets and bolded lines for intervals
+
+
+Real x
+with Interval A; Reals `X` where x ∈ A; A ⊆ `X` {
+    -- "Real x ∈ A" does not match the endpoints of A
+    override x.val = sampleFrom(X.shape)
+}
+
+
+Real a
+with Interval A; Reals `X`
+where a := A.left; OpenIntervalEnd(a, A) {
+    override a.shape = Paren {
+        x            = a.val
+        orientation  = "vertical"
+        bracket-type = "left"
+    }
+}
+
+Real b
+with Real a; Interval A; Reals `X`
+where a := A.left; b := A.right; OpenIntervalEnd(b, A) {
+    override b.val = sampleInBounds(a.val, X.shape.endX)
+    override b.shape = Paren {
+        x            = b.val
+        orientation  = "vertical"
+        bracket-type = "right"
+    }
+}
+
+Real a
+with Real b; Interval A; Reals `X`
+where a := A.left; b := A.right; ClosedIntervalEnd(b, A) {
+    override a.shape = Bracket {
+        x            = a.val
+        orientation  = "vertical"
+        bracket-type = "right"
+    }
+}
+
+
+-- Note: we don't have selectors for all types of intervals -- "Interval A" matches all subtypes of "Interval"
+Interval A
+with Real a, b; Reals `X`
+where a := A.left; b := A.right; A ⊂ `X`; a, b ∈ `X` {
+    A.shape = Line {
+        startX = a.val -- assuming horizontal endX = b.val
+        startY = X.shape.startY
+        endY   = X.shape.endY
+        style  = "bold"
+    }
+    A.labelFn = encourage belowCenter(A.text, A.shape)
+}
+
+Interval A
+with Real a, `inf`; Reals `X`
+where A.left := a; A.right := `inf`; a, `inf` ∈ X; A ⊂ X {
+    delete   inf.shape
+    override A.shape.right-style = "arrow"
+}
+
+
+----------------------------------------------------------------------
+-- The tick
+
+Real x
+with Reals `X` where x ∈ `X` {
+    x.val = sampleInBounds(X.shape.startX, X.shape.endX)
+    x.shape = Tick {
+        x           = x.val
+        -- assuming X is horizontal
+        y           = X.shape.endY
+        orientation = "vertical"
+    }
+    labelFn = encourage belowCenter(x.text, x.shape)
+}
+
+Real x
+with Interval A; Reals `X` where x ∈ A; A ⊆ `X` {
+    -- "Real x ∈ A" does not match the endpoints of A
+    override x.val = sampleFrom(X.shape)
+}

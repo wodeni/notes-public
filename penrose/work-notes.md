@@ -27,10 +27,13 @@ This document contains Nimo's progress reports of Penrose project in Summer 2018
 	- [ ] Implement `Nolabel` in type checker and Style
 	- [ ] make RA diagrams
 	- [ ] RA textbook review and post to `language-design`
-	
+
 ## Weekly Notes
 
-### Week 0 + 2: Ramp-up, Code refactoring
+### Week 3: LaTeX labels, RA domain
+
+
+### Week 0 - 2: Ramp-up, Code refactoring, Property access
 
 - Ramp-up: https://github.com/penrose/penrose/milestone/3
 - Refactoring:
@@ -47,6 +50,12 @@ This document contains Nimo's progress reports of Penrose project in Summer 2018
 
 ## Work Log
 
+- [180620]
+	- [x] Polish examples
+	- [x] Penrose terminology page
+	- [x] PR template
+- [180619]
+	- [x] Finish implementing Labels
 - [180618]
 	- [x] Latex labeling support in front-end
 	- [x] Implement `Label` in Substance parser
