@@ -20,18 +20,19 @@ This document contains Nimo's progress reports of Penrose project in Summer 2018
 - Pending:
     - [ ] Dynamic parsing: read https://docs.google.com/document/d/1DPpAvBKGnr96MyohJAj2M40zrppjPV7sbd25Nz-qfkg/edit
     - [ ] Open GitHub issue about structural editor
-	- [ ] Get a minimum example of RA working
-- [180619]
-	- [ ] Implement `Label` in type checker and Style
-	- [ ] Implement `AutoLabel` in type checker and Style
-	- [ ] Implement `Nolabel` in type checker and Style
-	- [ ] make RA diagrams
-	- [ ] RA textbook review and post to `language-design`
+- [180622]
+	- [x] Style language parser
+	- [ ] Read design paper
+	- [ ] Style program design
+	- [ ] Obj shape refactoring?
+	- [ ]
 
 ## Weekly Notes
 
-### Week 3: LaTeX labels, RA domain
+### Week 4: Style Rewrite RA domain
 
+### Week 3: LaTeX labels, RA domain - design
+- LaTeX label: https://github.com/penrose/penrose/pull/94
 
 ### Week 0 - 2: Ramp-up, Code refactoring, Property access
 
@@ -50,12 +51,22 @@ This document contains Nimo's progress reports of Penrose project in Summer 2018
 
 ## Work Log
 
+- [180627]
+	- [x] almost finished Style language parser
+- [180626]
+	- [x] paired with Katherine on Style grammar
+	- [x] started implementing Style parser
+- [180623] - [180625]
+	- weekend: out of town
+- [180621]
+	- [x] Meetings: graphics with Keenan, advisor meeting
 - [180620]
 	- [x] Polish examples
 	- [x] Penrose terminology page
-	- [x] PR template
+	- [x] Made alternative RA style diagram
 - [180619]
 	- [x] Finish implementing Labels
+	- [x] PR template
 - [180618]
 	- [x] Latex labeling support in front-end
 	- [x] Implement `Label` in Substance parser
