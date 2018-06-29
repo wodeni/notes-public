@@ -20,12 +20,9 @@ This document contains Nimo's progress reports of Penrose project in Summer 2018
 - Pending:
     - [ ] Dynamic parsing: read https://docs.google.com/document/d/1DPpAvBKGnr96MyohJAj2M40zrppjPV7sbd25Nz-qfkg/edit
     - [ ] Open GitHub issue about structural editor
-- [180622]
-	- [x] Style language parser
-	- [ ] Read design paper
-	- [ ] Style program design
 	- [ ] Obj shape refactoring?
-	- [ ]
+- Now
+	- [ ] Pair with lily on FSM, BVH first example with the `contains` function
 
 ## Weekly Notes
 
@@ -51,6 +48,10 @@ This document contains Nimo's progress reports of Penrose project in Summer 2018
 
 ## Work Log
 
+- [180628]
+	- [x] finished Style language parser: layering and list parsing
+	- [x] added pretty printing to all DSLs (and DSLL)
+	- [x] advisor meeting
 - [180627]
 	- [x] almost finished Style language parser
 - [180626]
