@@ -48,16 +48,19 @@ This document contains Nimo's progress reports of Penrose project in Summer 2018
 
 ## Work Log
 
-- [180628]
+- [180630]
+	- [x] started implementing the FSM algorithm in Haskell
+	- [x] write utility functions that work with `Vector` and realized how poorly the thing supports multi-dimensional vectors
+- [180629]
 	- [x] finished Style language parser: layering and list parsing
 	- [x] added pretty printing to all DSLs (and DSLL)
 	- [x] advisor meeting
-- [180627]
+- [180628]
 	- [x] almost finished Style language parser
-- [180626]
+- [180627]
 	- [x] paired with Katherine on Style grammar
 	- [x] started implementing Style parser
-- [180623] - [180625]
+- [180622] - [180626]
 	- weekend: out of town
 - [180621]
 	- [x] Meetings: graphics with Keenan, advisor meeting
