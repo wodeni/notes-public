@@ -48,6 +48,12 @@ This document contains Nimo's progress reports of Penrose project in Summer 2018
 
 ## Work Log
 
+- [180702]
+	- [x] debugging and testing BVH construction
+	- [x] modularized all BVH/levelset related code into `Graphics`
+	- [x] visualized BVHs for circles in the frontend
+- [180701]
+	- [x] Implementing BVH construction
 - [180630]
 	- [x] started implementing the FSM algorithm in Haskell
 	- [x] write utility functions that work with `Vector` and realized how poorly the thing supports multi-dimensional vectors
