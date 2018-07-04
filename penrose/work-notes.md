@@ -48,6 +48,9 @@ This document contains Nimo's progress reports of Penrose project in Summer 2018
 
 ## Work Log
 
+- [180703]
+	- [x] adding the BVH/levelset code into the main system
+	- [x] started considering coordinate systems, grid resolution, and alignment problems
 - [180702]
 	- [x] debugging and testing BVH construction
 	- [x] modularized all BVH/levelset related code into `Graphics`
